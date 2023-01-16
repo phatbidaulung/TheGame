@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.ensign.unity": {
+      "version": "1.0.3-preview.8",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "http://dungnv.info:4873"
+    },
     "com.unity.collab-proxy": {
       "version": "1.17.2",
       "depth": 0,

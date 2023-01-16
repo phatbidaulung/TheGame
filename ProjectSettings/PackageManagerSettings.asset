@@ -24,20 +24,28 @@ MonoBehaviour:
     m_Scopes: []
     m_IsDefault: 1
     m_Capabilities: 7
-  m_UserSelectedRegistryName: 
+  - m_Id: scoped:Ensign Studio Service
+    m_Name: Ensign Studio Service
+    m_Url: http://dungnv.info:4873
+    m_Scopes:
+    - com.ensign
+    m_IsDefault: 0
+    m_Capabilities: 0
+  m_UserSelectedRegistryName: Ensign Studio Service
   m_UserAddingNewScopedRegistry: 0
   m_RegistryInfoDraft:
     m_ErrorMessage: 
     m_Original:
-      m_Id: 
-      m_Name: 
-      m_Url: 
-      m_Scopes: []
+      m_Id: scoped:Ensign Studio Service
+      m_Name: Ensign Studio Service
+      m_Url: http://dungnv.info:4873
+      m_Scopes:
+      - com.ensign
       m_IsDefault: 0
       m_Capabilities: 0
     m_Modified: 0
-    m_Name: 
-    m_Url: 
+    m_Name: Ensign Studio Service
+    m_Url: http://dungnv.info:4873
     m_Scopes:
-    - 
+    - com.ensign
     m_SelectedScopeIndex: 0
