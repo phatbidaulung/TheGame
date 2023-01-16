@@ -9,7 +9,7 @@ public class PopupSetting : UIManager
     [SerializeField] private Slider _sliderVolume;
 
     private void Start() {
-        this._btnClose.onClick.AddListener(() => ClosePopup(_popupSetting));
+        this._btnClose.onClick.AddListener(() => ClosePopup(this.gameObject));
         LoadVolume();
     }
     public void ChangeVolume() 
