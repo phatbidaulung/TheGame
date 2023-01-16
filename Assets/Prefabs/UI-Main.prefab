@@ -579,13 +579,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fef838bfb85b6924b9142a53e96851a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _popupSetting: {fileID: 0}
-  _uiChooseSkins: {fileID: 0}
   _btnSetting: {fileID: 6610963158080411906}
   _btnEndless: {fileID: 2314455079462315072}
   _btnNormal: {fileID: 7890396497278918506}
   _btnStore: {fileID: 6000636340606301197}
   _btnChosseSkins: {fileID: 8236664313856827519}
+  _popupSetting: {fileID: 0}
+  _uiChooseSkins: {fileID: 0}
+  _uiStore: {fileID: 0}
 --- !u!1 &5392454184589714179
 GameObject:
   m_ObjectHideFlags: 0
