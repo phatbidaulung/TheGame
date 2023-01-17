@@ -16,6 +16,6 @@ MonoBehaviour:
   - SkinName: Number01
     SkinSprite: {fileID: 21300000, guid: 8c5926ef39e2c1741968081cb20af841, type: 3}
   - SkinName: Number02
-    SkinSprite: {fileID: 21300000, guid: 8c5926ef39e2c1741968081cb20af841, type: 3}
+    SkinSprite: {fileID: 21300000, guid: 4ef6729c886ccb349ab8910c7641e2b1, type: 3}
   - SkinName: Number03
-    SkinSprite: {fileID: 21300000, guid: 8c5926ef39e2c1741968081cb20af841, type: 3}
+    SkinSprite: {fileID: 21300000, guid: 87fdf4d7c7169f347ab211db77679219, type: 3}

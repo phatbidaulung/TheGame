@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 using TMPro;
 
+using Ensign.Tween;
+using Ensign.Unity;
+
 public class UIChooseSkin : UIManager
 {
     [SerializeField] private Button _buttonBack;
@@ -14,15 +17,26 @@ public class UIChooseSkin : UIManager
     [SerializeField] private SkinDataBase _skinDB;
     [SerializeField] private Image _skinImage;
     [SerializeField] private TextMeshProUGUI _skinName;
+
+    [SerializeField] private CanvasGroup _choosseSkin;
+
+    [SerializeField] private float _timeDelayTurnOffObject = 0.5f;
     private int _selectSkin = 0;
 
+   private void Awake() {
+        _choosseSkin.alpha = 0f;
+   }
     private void Start() 
     {
         _selectSkin = PlayerPrefs.GetInt("selectSkin");
-        this._buttonBack.onClick.AddListener(() => ClosePopup(this.gameObject));
+        this._buttonBack.onClick.AddListener(TurnOffObject);
         this._buttonLeft.onClick.AddListener(LastSkin);
         this._buttonRight.onClick.AddListener(NextSkin);
         UpdateSkin(_selectSkin);
+    }
+    private void OnEnable() 
+    {
+        ChangeAlpha(_choosseSkin, 1f, _timeDelayTurnOffObject);
     }
     private void LastSkin()
     {
@@ -48,5 +62,13 @@ public class UIChooseSkin : UIManager
         _skinImage.sprite = _skins.SkinSprite;
         _skinName.text = _skins.SkinName;
         PlayerPrefs.SetInt("selectSkin", _selectSkin);
+    }
+    private void TurnOffObject()
+    {
+        ChangeAlpha(_choosseSkin, 0f, _timeDelayTurnOffObject);
+        this.ActionWaitTime(_timeDelayTurnOffObject, () =>
+        {
+            ClosePopup(this.gameObject);
+        });
     }
 }

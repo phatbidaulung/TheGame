@@ -3,13 +3,24 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
+using Ensign.Unity;
 public class PopupSetting : UIManager
 {
     [SerializeField] private Button _btnClose;
     [SerializeField] private Slider _sliderVolume;
-
+    [SerializeField] private GameObject _popupSetting;
+   [SerializeField] private CanvasGroup _background;
+    [SerializeField] private float _timeDelayTurnOffObject = 0.5f;
+    private void Awake() {
+        _popupSetting.transform.localScale = new Vector3(0f, 0f, 0f);
+        _background.alpha = 0f;
+    }
+    private void OnEnable() {
+        ChangeScale(_popupSetting, new Vector3(1f, 1f, 1f), _timeDelayTurnOffObject);
+        ChangeAlpha(_background, 1f, _timeDelayTurnOffObject);
+    }
     private void Start() {
-        this._btnClose.onClick.AddListener(() => ClosePopup(this.gameObject));
+        this._btnClose.onClick.AddListener(TurnOffObject);
         LoadVolume();
     }
     public void ChangeVolume() 
@@ -18,4 +29,14 @@ public class PopupSetting : UIManager
         SoundManager.Instance.SaveVolume();
     }  
     private void LoadVolume() { _sliderVolume.value = SoundManager.volume; }
+
+    private void TurnOffObject()
+    {
+        ChangeAlpha(_background, 0f, _timeDelayTurnOffObject);
+        ChangeScale(_popupSetting, new Vector3(0f, 0f, 0f), _timeDelayTurnOffObject);
+        this.ActionWaitTime(_timeDelayTurnOffObject, () =>
+        {
+            ClosePopup(this.gameObject);
+        });
+    }
 }
