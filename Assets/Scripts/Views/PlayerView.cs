@@ -14,7 +14,7 @@ public class PlayerView : View<PlayerController, PlayerModel>
 
     private void Update()
     {
-        // if(this.Model.InPlane)
+        if(this.Model.InPlane)
             MovePlayer();
     }
     private void MovePlayer()

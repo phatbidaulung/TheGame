@@ -11,7 +11,7 @@ public class PlayerController : Controller<PlayerController, PlayerModel>
         base.Init();
         this.ChangeModel(new PlayerModel
         {
-            JumpForce = 200f,
+            JumpForce = 100f,
             Speed = 10f,
             InPlane = true
         });
