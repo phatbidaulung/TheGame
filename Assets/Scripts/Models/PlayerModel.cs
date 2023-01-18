@@ -1,0 +1,13 @@
+using UnityEngine;
+using System.Collections;
+
+using Ensign;
+using Ensign.Unity.MVC;
+public class PlayerModel : IDataModel
+{
+    public float JumpForce {get; set;}
+    public Vector3 NextPosition {get; set;} 
+    public Vector3 CurrentPosition {get; set;}
+    public float Speed {get; set;}
+    public bool InPlane {get; set;}
+}
