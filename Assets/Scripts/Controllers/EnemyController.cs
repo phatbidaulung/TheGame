@@ -5,9 +5,14 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] private float _speed;
+    private void Awake() {
+        // transform.position = new Vector3(transform.position.x, transform.position.y, -15);
+    }
     private void FixedUpdate() 
     {
         Move();
+        if(transform.position.z >= 20)
+            transform.position = new Vector3(transform.position.x, transform.position.y, -15);
     }
     private void Move()
     {
