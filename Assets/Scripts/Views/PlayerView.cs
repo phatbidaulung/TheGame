@@ -6,6 +6,7 @@ using Ensign.Unity.MVC;
 public class PlayerView : View<PlayerController, PlayerModel>
 {
     [SerializeField] private Rigidbody _rb;
+    [SerializeField] private Animator _animator;
     
     private void Start()
     {
@@ -14,13 +15,14 @@ public class PlayerView : View<PlayerController, PlayerModel>
 
     private void Update()
     {
-        if(this.Model.InPlane)
+        // if(this.Model.InPlane)
             MovePlayer();
     }
     private void MovePlayer()
     { 
         if(transform.position != new Vector3(this.Model.CurrentPosition.x, transform.position.y, this.Model.CurrentPosition.z) + this.Model.NextPosition)
         {
+            _animator.SetTrigger("Jump");
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(this.Model.CurrentPosition.x, transform.position.y, this.Model.CurrentPosition.z) + this.Model.NextPosition, this.Model.Speed * Time.deltaTime);
         }
         else
