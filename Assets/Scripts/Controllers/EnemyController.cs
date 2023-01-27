@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Ensign.Unity;
 
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] private float _speed;
-    private void Awake() {
-        // transform.position = new Vector3(transform.position.x, transform.position.y, -15);
+    private void OnEnable() {
+        this.ActionWaitTime(15f, () =>{
+            if(gameObject.activeSelf == true)
+                gameObject.Recycle();
+        });
     }
     private void FixedUpdate() 
     {
@@ -22,7 +26,7 @@ public class EnemyController : MonoBehaviour
     {
         if(other.gameObject.tag == "Wall")
         {
-            this.gameObject.SetActive(false);
+            this.gameObject.Recycle();
         }
     }
 }
