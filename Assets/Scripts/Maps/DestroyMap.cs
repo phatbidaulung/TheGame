@@ -7,13 +7,29 @@ public class DestroyMap : MonoBehaviour
 {
     [SerializeField] private GameObject _map;
     [SerializeField] private bool _createMap;
-    private void OnTriggerEnter(Collider other) {
+    private ETypeMap _typeMap;
+    private void Awake() 
+    {
+        _typeMap = GameManager.Instance.TypeMapInThisSceneIs();
+    } 
+    private void OnTriggerEnter(Collider other) 
+    {
         if(other.CompareTag("Player"))
         {
             if(_createMap)
-                RenderMap.Instance.CreateNewMap();
+            {
+                switch (_typeMap)
+                {
+                    case ETypeMap.EndLessMap:
+                        RenderMapEndless.Instance.CreateNewMap();
+                        break;
+                    case ETypeMap.NormalMap:
+                        RenderMapNormal.Instance.CreateNewMap();
+                        break;
+                    }
+                    Debug.Log("Create new maps");
+            }
             _map.Recycle();
-            Debug.Log("Create new maps");
         }
     }
 }
