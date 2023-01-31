@@ -34,7 +34,7 @@ public class RenderMapNormal : Singleton<RenderMapNormal>
             _locationNewMap += lengthMap;
             _maps[_numberMap].Spawn(new Vector3(_locationNewMap, transform.position.y, transform.position.z));
             _numberMap++;
-            Debug.Log(_numberMap);
+            Debug.Log($"Number map is: {_numberMap}");
         }
     }
 

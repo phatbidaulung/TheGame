@@ -38,7 +38,7 @@ public class RenderMapEndless : Singleton<RenderMapEndless>
     private GameObject RandomMap()
     {
         int index = Random.Range(0, _maps.Count);
-        Debug.Log(index);
+        Debug.Log($"Number map is: {index}");
         return _maps[index];
     }
 }

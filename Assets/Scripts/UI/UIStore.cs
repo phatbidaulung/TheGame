@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using Ensign.Unity;
-public class UIStore : UIManager
+public class UIStore : UIBase
 {
    [SerializeField] private Button _buttonBack;
    [SerializeField] private CanvasGroup _store;

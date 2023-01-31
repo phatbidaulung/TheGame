@@ -5,12 +5,14 @@ using Ensign.Unity;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] private float _speed;
-    private void OnEnable() {
+    private void OnEnable() 
+    {
+        // Recycle enemy when enemy don't "onTrigger" with "RecycleEnemy (gameObject)"
         this.ActionWaitTime(15f, () =>{
             if(gameObject.activeSelf == true)
                 gameObject.Recycle();
         });
+
     }
     private void FixedUpdate() 
     {
@@ -20,7 +22,7 @@ public class EnemyController : MonoBehaviour
     }
     private void Move()
     {
-        this.transform.position += transform.forward * _speed * Time.deltaTime;
+        this.transform.position += transform.forward * GameManager.Instance.SpeedEnemy * Time.deltaTime;
     }
     private void OnCollisionEnter(Collision other) 
     {

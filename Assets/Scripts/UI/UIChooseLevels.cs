@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using Ensign.Unity;
-public class UIChooseLevels : UIManager
+public class UIChooseLevels : UIBase
 {
     [SerializeField] private Button _buttonClose;
    [SerializeField] private CanvasGroup _chooseLevel;

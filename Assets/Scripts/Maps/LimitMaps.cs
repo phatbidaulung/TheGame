@@ -8,7 +8,7 @@ public class LimitMaps : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            Debug.Log("Game Over");
+            GameManager.Instance.GameOver();
         }
     }
 }

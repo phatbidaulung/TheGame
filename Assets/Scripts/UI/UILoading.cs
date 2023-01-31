@@ -9,7 +9,7 @@ using Ensign;
 using Ensign.Unity;
 using Ensign.Tween;
 
-public class UILoading : UIManager
+public class UILoading : UIBase
 {
     private const string VALUE_FORMAT = "{0}%";
     [SerializeField] private Slider _sliderLoading;

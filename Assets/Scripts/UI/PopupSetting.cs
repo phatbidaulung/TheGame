@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using Ensign.Unity;
-public class PopupSetting : UIManager
+public class PopupSetting : UIBase
 {
     [SerializeField] private Button _btnClose;
     [SerializeField] private Slider _sliderVolume;

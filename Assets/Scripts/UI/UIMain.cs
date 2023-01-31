@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIMain : UIManager
+public class UIMain : UIBase
 {
     private string _endless = "EndlessMode";
     [Space, Header("Buttons")]

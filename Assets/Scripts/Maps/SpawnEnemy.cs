@@ -16,14 +16,17 @@ public class SpawnEnemy : MonoBehaviour
     private void OnEnable() 
     {
         SpawnGameobjet();
-        _timeRandom = Random.Range(0f, 0.5f);
+        _timeRandom = Random.Range(0f, 1f);
     }
     private void SpawnGameobjet()
     {
-        this.ActionWaitTime(_timeInstantiate + _timeRandom, () => {
-            _enemy.Spawn(transform.position, transform.rotation);
-            _timeRandom = Random.Range(0f, 0.5f);
-            SpawnGameobjet();
-        });
+        if(GameManager.Instance.StatusGameIs() == EStatusGame.Playing)
+        {
+            this.ActionWaitTime(_timeInstantiate + _timeRandom, () => {
+                _enemy.Spawn(transform.position, transform.rotation);
+                _timeRandom = Random.Range(0f, 0.5f);
+                SpawnGameobjet();
+            });
+        }
     }
 }

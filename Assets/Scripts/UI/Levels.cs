@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using TMPro;
-public class Levels : UIManager
+public class Levels : UIBase
 {
     private const string LEVEL_FORMAT = "Level {0}";
     [SerializeField] private Button _level;

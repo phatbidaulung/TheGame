@@ -8,7 +8,7 @@ using TMPro;
 using Ensign.Tween;
 using Ensign.Unity;
 
-public class UIChooseSkin : UIManager
+public class UIChooseSkin : UIBase
 {
     [SerializeField] private Button _buttonBack;
     [SerializeField] private Button _buttonLeft;
