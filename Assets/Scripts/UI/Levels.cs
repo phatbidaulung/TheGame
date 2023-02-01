@@ -6,17 +6,12 @@ using UnityEngine.UI;
 using TMPro;
 public class Levels : UIBase
 {
-    private const string LEVEL_FORMAT = "Level {0}";
     [SerializeField] private Button _level;
-    [SerializeField] private int _indexLevel;
+    [SerializeField] private ELevel _indexLevel;
     [SerializeField] private TextMeshProUGUI _textLevel;
-    private void Start() {
-        this._level.onClick.AddListener(() => ChangeLevel(_indexLevel));
-        _textLevel.text = string.Format(LEVEL_FORMAT, _indexLevel);
-    }
-
-    private void ChangeLevel(int index)
+    private void OnEnable() 
     {
-        LoadScenes(string.Format(LEVEL_FORMAT, index));
+        this._level.onClick.AddListener(() => LoadScenes(_indexLevel.ToString()));
+        _textLevel.text = _indexLevel.ToString();
     }
 }
