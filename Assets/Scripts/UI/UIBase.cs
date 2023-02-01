@@ -25,6 +25,7 @@ public class UIBase : MonoBehaviour
     {
         SceneManager.LoadScene(nameScene);
     }
+    protected string NameScene() =>  SceneManager.GetActiveScene().name;
     protected void MoveBackgroundTo(GameObject taget, Vector3 vtcTo, float time)
     {
         LeanTween.moveLocal(taget, vtcTo, time);

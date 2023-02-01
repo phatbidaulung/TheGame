@@ -48,15 +48,17 @@ public class GameManager : Singleton<GameManager>
 
     public void GameOver()
     {
-        _statusGame = EStatusGame.Over;
+        _statusGame = EStatusGame.GameOver;
         _player.PlayerBecomeGhost();
-        Debug.Log("GameOver ---- GameManager");
         _uiManager.OpenPopupStatusGame();
+        Debug.Log("GameOver ---- GameManager");
     }
 
     public void WinGame()
     {
         _statusGame = EStatusGame.Win;
+        _player.PlayerBecomeGhost();
+        _uiManager.OpenPopupStatusGame();
         Debug.Log("You ------ win");
     }
     public Vector3 MaxPositionPlayer() => _maxPositionPlayer;
@@ -72,7 +74,7 @@ public enum ETypeMap
 public enum EStatusGame
 {
     Playing,
-    Over,
+    GameOver,
     Win
 }
 public enum ELevel

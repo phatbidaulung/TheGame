@@ -5,10 +5,15 @@ using UnityEngine;
 using Ensign.Unity.MVC;
 public class PlayerView : View<PlayerController, PlayerModel>
 {
+    
+    [Space, Header("Player")]
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private Animator _animator;
     [SerializeField] private Collider _playerCollider;
-    
+
+    [Space, Header("Script Object")]
+    [SerializeField] private UIManager _uiManager;
+
     private void Start()
     {
         this.Controller.ChangeCurrentPosition(transform.position);
@@ -17,7 +22,7 @@ public class PlayerView : View<PlayerController, PlayerModel>
     private void Update()
     {
         RoiXuongDayXaHoi();
-        if(GameManager.Instance.StatusGameIs() != EStatusGame.Over){
+        if(GameManager.Instance.StatusGameIs() != EStatusGame.GameOver){
             Move();
             }
             // MovePlayer();
@@ -79,6 +84,7 @@ public class PlayerView : View<PlayerController, PlayerModel>
             PreventPlayerTurning();
             RotatePlayer(180);
             Jump();
+            _uiManager.OpenPopup(EActionUI.PopupStatusRealTime);
             Debug.Log("You can't comeback");
         }
         if(Input.GetKeyDown(KeyCode.D))
@@ -119,7 +125,7 @@ public class PlayerView : View<PlayerController, PlayerModel>
     }
     private void RoiXuongDayXaHoi()
     {
-        if(transform.position.y < -10)
+        if(transform.position.y < 0)
         {
             Debug.Log("You are DatVila :>");
             GameManager.Instance.GameOver();

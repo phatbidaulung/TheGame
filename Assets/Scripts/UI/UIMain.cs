@@ -12,18 +12,14 @@ public class UIMain : UIBase
     [SerializeField] private Button _btnNormal;
     [SerializeField] private Button _btnStore;
     [SerializeField] private Button _btnChosseSkins;
-    
-    [Space, Header("Popups")]
-    [SerializeField] protected GameObject _popupSetting;
-    [SerializeField] protected GameObject _uiChooseSkins;
-    [SerializeField] protected GameObject _uiStore;
-    [SerializeField] protected GameObject _uiChooseLevels;
+
+    [SerializeField] private UIManager _uiManager;
 
     private void Start() {
-        this._btnSetting.onClick.AddListener(() => OpenPopup(_popupSetting));
-        this._btnChosseSkins.onClick.AddListener(() => OpenPopup(_uiChooseSkins));
-        this._btnStore.onClick.AddListener(() => OpenPopup(_uiStore));
-        this._btnNormal.onClick.AddListener(() => OpenPopup(_uiChooseLevels));
+        this._btnSetting.onClick.AddListener(() => _uiManager.OpenPopup(EActionUI.PopupSetting));
+        this._btnChosseSkins.onClick.AddListener(() => _uiManager.OpenPopup(EActionUI.UIChooseSkins));
+        this._btnStore.onClick.AddListener(() => _uiManager.OpenPopup(EActionUI.UIStore));
+        this._btnNormal.onClick.AddListener(() => _uiManager.OpenPopup(EActionUI.UIChooseLevels));
         this._btnEndless.onClick.AddListener(() => LoadScenes(_endless));
     }
 }

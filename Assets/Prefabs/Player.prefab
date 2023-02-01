@@ -955,7 +955,7 @@ Transform:
   - {fileID: 8653883376223587508}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 5.0730004, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8744976640654004762
 Animator:
   serializedVersion: 3
@@ -1022,6 +1022,8 @@ MonoBehaviour:
   animOff: {fileID: 0}
   _rb: {fileID: 8649265975845412084}
   _animator: {fileID: 8744976640654004762}
+  _playerCollider: {fileID: 8649265975845412085}
+  _uiManager: {fileID: 0}
 --- !u!1 &8650398800707800434
 GameObject:
   m_ObjectHideFlags: 0
