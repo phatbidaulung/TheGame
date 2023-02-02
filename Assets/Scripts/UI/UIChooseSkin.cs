@@ -40,6 +40,7 @@ public class UIChooseSkin : UIBase
     }
     private void LastSkin()
     {
+        SoundManager.Instance.PlaySound(EActionSound.Button);
         _selectSkin--;
         if(_selectSkin < 0)
         {
@@ -49,6 +50,7 @@ public class UIChooseSkin : UIBase
     }
     private void NextSkin()
     {
+        SoundManager.Instance.PlaySound(EActionSound.Button);
         _selectSkin++;
         if(_selectSkin >= _skinDB.SkinsCount)
         {
@@ -65,6 +67,7 @@ public class UIChooseSkin : UIBase
     }
     private void TurnOffObject()
     {
+        SoundManager.Instance.PlaySound(EActionSound.Button);
         ChangeAlpha(_choosseSkin, 0f, _timeDelayTurnOffObject);
         this.ActionWaitTime(_timeDelayTurnOffObject, () =>
         {

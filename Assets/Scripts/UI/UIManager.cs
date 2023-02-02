@@ -7,12 +7,12 @@ public class UIManager : UIBase
     [SerializeField] private UIScore _uiScore;
     
     [Space, Header("Popups")]
-    [SerializeField] protected GameObject _popupSetting;
+    [SerializeField] private GameObject _popupSetting;
     [SerializeField] private GameObject _popupStatusGame;
-    [SerializeField] protected GameObject _popupStatusRealTime;
-    [SerializeField] protected GameObject _uiChooseSkins;
-    [SerializeField] protected GameObject _uiStore;
-    [SerializeField] protected GameObject _uiChooseLevels;
+    [SerializeField] private GameObject _popupStatusRealTime;
+    [SerializeField] private GameObject _uiChooseSkins;
+    [SerializeField] private GameObject _uiStore;
+    [SerializeField] private GameObject _uiChooseLevels;
     
     ///<summary>
     ///GameOver or WinGame

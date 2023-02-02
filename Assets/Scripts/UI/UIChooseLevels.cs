@@ -19,7 +19,7 @@ public class UIChooseLevels : UIBase
         _background.alpha = 0f;
     }
     private void OnEnable() 
-    {
+    {        
         ChangeAlpha(_background, 1f, _timeDelayTurnOffObject);
         CheckLevelFinish();
     }
@@ -29,6 +29,8 @@ public class UIChooseLevels : UIBase
     }
     private void TurnOffObject()
     {
+        
+        SoundManager.Instance.PlaySound(EActionSound.Button);
         ChangeAlpha(_background, 0f, _timeDelayTurnOffObject);
         this.ActionWaitTime(_timeDelayTurnOffObject, () =>
         {

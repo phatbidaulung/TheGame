@@ -11,7 +11,12 @@ public class Levels : UIBase
     [SerializeField] private TextMeshProUGUI _textLevel;
     private void OnEnable() 
     {
-        this._level.onClick.AddListener(() => LoadScenes(_indexLevel.ToString()));
+        this._level.onClick.AddListener(ButtonLevel);
         _textLevel.text = _indexLevel.ToString();
+    }
+    private void ButtonLevel()
+    {
+        SoundManager.Instance.PlaySound(EActionSound.Button);
+        LoadScenes(_indexLevel.ToString());
     }
 }

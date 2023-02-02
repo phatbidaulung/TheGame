@@ -77,6 +77,7 @@ public class PlayerView : View<PlayerController, PlayerModel>
             RotatePlayer(0);
             Jump();
             GameManager.Instance.IncreaseScore();
+            SoundManager.Instance.PlaySound(EActionSound.PlayerMove);
         }
         if(Input.GetKeyDown(KeyCode.S))
         {
@@ -85,6 +86,7 @@ public class PlayerView : View<PlayerController, PlayerModel>
             RotatePlayer(180);
             Jump();
             _uiManager.OpenPopup(EActionUI.PopupStatusRealTime);
+            SoundManager.Instance.PlaySound(EActionSound.PlayerMove);
             Debug.Log("You can't comeback");
         }
         if(Input.GetKeyDown(KeyCode.D))
@@ -93,6 +95,7 @@ public class PlayerView : View<PlayerController, PlayerModel>
             PreventPlayerTurning();
             RotatePlayer(90);
             Jump();
+            SoundManager.Instance.PlaySound(EActionSound.PlayerMove);
         }
         if(Input.GetKeyDown(KeyCode.A))
         {
@@ -100,12 +103,13 @@ public class PlayerView : View<PlayerController, PlayerModel>
             PreventPlayerTurning();
             RotatePlayer(-90);
             Jump();
+            SoundManager.Instance.PlaySound(EActionSound.PlayerMove);
         }
     }
     private void PreventPlayerTurning()
     {
-        // Deduction 2 because player can come back 2 times. with time 3rd game over
-        if(transform.position.x <= (GameManager.Instance.MaxPositionPlayer().x - 2))
+        // Deduction 2 because player can come back 3 times. with time 3rd game over
+        if(transform.position.x <= (GameManager.Instance.MaxPositionPlayer().x - 3))
         {
             GameManager.Instance.GameOver();
         }
@@ -135,6 +139,7 @@ public class PlayerView : View<PlayerController, PlayerModel>
         if(other.gameObject.tag == "Enemy")
         {
             GameManager.Instance.GameOver();
+            SoundManager.Instance.PlaySound(EActionSound.PlayerDie);
         }
         if(other.gameObject.tag == "Plane")
         {

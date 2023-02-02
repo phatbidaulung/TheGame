@@ -16,6 +16,7 @@ public class PopupSetting : UIBase
         _background.alpha = 0f;
     }
     private void OnEnable() {
+        // Turn on animation
         ChangeScale(_popupSetting, new Vector3(1f, 1f, 1f), _timeDelayTurnOffObject);
         ChangeAlpha(_background, 1f, _timeDelayTurnOffObject);
     }
@@ -32,6 +33,7 @@ public class PopupSetting : UIBase
 
     private void TurnOffObject()
     {
+        SoundManager.Instance.PlaySound(EActionSound.Button);
         ChangeAlpha(_background, 0f, _timeDelayTurnOffObject);
         ChangeScale(_popupSetting, new Vector3(0f, 0f, 0f), _timeDelayTurnOffObject);
         this.ActionWaitTime(_timeDelayTurnOffObject, () =>

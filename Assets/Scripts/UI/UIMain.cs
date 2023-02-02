@@ -16,10 +16,36 @@ public class UIMain : UIBase
     [SerializeField] private UIManager _uiManager;
 
     private void Start() {
-        this._btnSetting.onClick.AddListener(() => _uiManager.OpenPopup(EActionUI.PopupSetting));
-        this._btnChosseSkins.onClick.AddListener(() => _uiManager.OpenPopup(EActionUI.UIChooseSkins));
-        this._btnStore.onClick.AddListener(() => _uiManager.OpenPopup(EActionUI.UIStore));
-        this._btnNormal.onClick.AddListener(() => _uiManager.OpenPopup(EActionUI.UIChooseLevels));
-        this._btnEndless.onClick.AddListener(() => LoadScenes(_endless));
+        this._btnSetting.onClick.AddListener(ButtonSetting);
+        this._btnChosseSkins.onClick.AddListener(ButtonChooseSkin);
+        this._btnStore.onClick.AddListener(ButtonStore);
+        this._btnNormal.onClick.AddListener(ButtonNormalMode);
+        this._btnEndless.onClick.AddListener(ButtonEndlessMode);
+    }
+
+    private void ButtonSetting()
+    {
+        SoundManager.Instance.PlaySound(EActionSound.Button);
+        _uiManager.OpenPopup(EActionUI.PopupSetting);
+    }
+    private void ButtonChooseSkin()
+    {
+        SoundManager.Instance.PlaySound(EActionSound.Button);
+        _uiManager.OpenPopup(EActionUI.UIChooseSkins);
+    }
+    private void ButtonStore()
+    {
+        SoundManager.Instance.PlaySound(EActionSound.Button);
+        _uiManager.OpenPopup(EActionUI.UIStore);
+    }
+    private void ButtonNormalMode()
+    {
+        SoundManager.Instance.PlaySound(EActionSound.Button);
+        _uiManager.OpenPopup(EActionUI.UIChooseLevels);
+    }
+    private void ButtonEndlessMode()
+    {
+        SoundManager.Instance.PlaySound(EActionSound.Button);
+        LoadScenes(_endless);
     }
 }

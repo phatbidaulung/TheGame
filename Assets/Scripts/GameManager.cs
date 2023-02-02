@@ -24,7 +24,6 @@ public class GameManager : Singleton<GameManager>
     #endregion
     private void Start() 
     {
-
     }
     public void IncreaseScore()
     {
@@ -51,21 +50,29 @@ public class GameManager : Singleton<GameManager>
 
     public void GameOver()
     {
-        _statusGame = EStatusGame.GameOver;
-        _player.PlayerBecomeGhost();
-        _uiManager.OpenPopupStatusGame();
-        _dataManager.SaveData();
-        Debug.Log("GameOver ---- GameManager");
+        if(_statusGame != EStatusGame.GameOver)
+        {
+            _statusGame = EStatusGame.GameOver;
+            _player.PlayerBecomeGhost();
+            _uiManager.OpenPopupStatusGame();
+            _dataManager.SaveData();
+            SoundManager.Instance.PlaySound(EActionSound.GameOver);
+            Debug.Log("GameOver ---- GameManager");
+        }
     }
 
     // Only normal maps
     public void WinGame()
     {
-        _statusGame = EStatusGame.Win;
-        _player.PlayerBecomeGhost();
-        _uiManager.OpenPopupStatusGame();
-        _dataManager.SaveData();
-        Debug.Log("You ------ win");
+        if(_statusGame != EStatusGame.Win)
+        {
+            _statusGame = EStatusGame.Win;
+            _player.PlayerBecomeGhost();
+            _uiManager.OpenPopupStatusGame();
+            _dataManager.SaveData();
+            SoundManager.Instance.PlaySound(EActionSound.WinGame);
+            Debug.Log("You ------ win");
+        }
     }
     public Vector3 MaxPositionPlayer() => _maxPositionPlayer;
     public float Score() => _score;

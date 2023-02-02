@@ -25,16 +25,22 @@ public class PopupStatusGane : UIBase
         _background.alpha = 0f;
     }
     private void OnEnable() {
-        _btnResetScene.onClick.AddListener( () => LoadScenes(NameScene()));
-        _btnHome.onClick.AddListener( () => LoadScenes("Main"));
+        _btnResetScene.onClick.AddListener(ButtonReset);
+        _btnHome.onClick.AddListener(ButtonHome);
         _textStatusGame.text = GameManager.Instance.StatusGameIs().ToString();
 
         // Turn on animation
         ChangeScale(_popupStatusGame, new Vector3(1f, 1f, 1f), _timeDelayTurnOffObject);
         ChangeAlpha(_background, 1f, _timeDelayTurnOffObject);
     }
-    private void OnDisable() {
-        _btnResetScene.onClick.RemoveAllListeners();
-        _btnHome.onClick.RemoveAllListeners();
+    private void ButtonHome()
+    {
+        SoundManager.Instance.PlaySound(EActionSound.Button);
+        LoadScenes("Main");
+    }
+    private void ButtonReset()
+    {
+        SoundManager.Instance.PlaySound(EActionSound.Button); 
+        LoadScenes(NameScene());
     }
 }
