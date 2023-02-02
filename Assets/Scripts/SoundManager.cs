@@ -13,14 +13,6 @@ public class SoundManager : Singleton<SoundManager>
     public void Start() { 
         LoadVolume(); 
     }
-        
-    private void Update() { 
-        
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            PlaySound(EActionSound.PlayerDie);
-        }
-    }
 
     /// <summary>
     /// Play sound with EActionSound

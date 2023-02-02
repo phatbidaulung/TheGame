@@ -9,7 +9,7 @@ public class PopupSetting : UIBase
     [SerializeField] private Button _btnClose;
     [SerializeField] private Slider _sliderVolume;
     [SerializeField] private GameObject _popupSetting;
-   [SerializeField] private CanvasGroup _background;
+    [SerializeField] private CanvasGroup _background;
     [SerializeField] private float _timeDelayTurnOffObject = 0.5f;
     private void Awake() {
         _popupSetting.transform.localScale = new Vector3(0f, 0f, 0f);

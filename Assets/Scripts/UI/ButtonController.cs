@@ -7,37 +7,32 @@ public class ButtonController : MonoBehaviour
 {
     [SerializeField] private EButtonController _typeButton;
     [SerializeField] private Button _buttonController;
+    [SerializeField] private PlayerView _playerView;
 
     private void Start() {
-        this._buttonController.onClick.AddListener(() => Log(_typeButton));
+        this._buttonController.onClick.AddListener(() => MoveWithTouch(_typeButton));
     }
     
-    private void Log(EButtonController type)
+    private void MoveWithTouch(EButtonController type)
     {
-        Debug.Log(type);
+        switch (type)
+        {
+            case EButtonController.ButtonTop:
+                _playerView.MoveToTop();
+                break;
+            case EButtonController.ButtonBottom:
+                _playerView.MoveToBottom();
+                break;
+            case EButtonController.ButtonLeft:
+                _playerView.MoveToLeft();
+                break;
+            case EButtonController.ButtonRight:
+                _playerView.MoveToRight();
+                break;
+        }
     }
 
     private void Update() {
-        InputButtom();
-    }
-    private void InputButtom()
-    {
-        //Top
-        if(Input.GetKeyDown(KeyCode.W)){
-            Log(EButtonController.ButtonTop);
-        }
-        //Bottom
-        if(Input.GetKeyDown(KeyCode.S)){
-            Log(EButtonController.ButtonBottom);
-        }
-        //Left
-        if(Input.GetKeyDown(KeyCode.A)){
-            Log(EButtonController.ButtonLeft);
-        }
-        //Right
-        if(Input.GetKeyDown(KeyCode.D)){
-            Log(EButtonController.ButtonRight);
-        }
     }
 }
 

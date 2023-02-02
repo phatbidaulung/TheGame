@@ -61,7 +61,9 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    // Only normal maps
+    ///<summary>
+    /// Only normal maps
+    ///</summary>
     public void WinGame()
     {
         if(_statusGame != EStatusGame.Win)
@@ -74,6 +76,16 @@ public class GameManager : Singleton<GameManager>
             Debug.Log("You ------ win");
         }
     }
+
+    public void StartGame()
+    {
+        Time.timeScale = 1f;
+    }
+    public void StopGame()
+    {
+        Time.timeScale = 0f;
+    }
+
     public Vector3 MaxPositionPlayer() => _maxPositionPlayer;
     public float Score() => _score;
     public ETypeMap TypeMapInThisSceneIs() => _typeMap;
@@ -93,6 +105,7 @@ public enum EStatusGame
 }
 public enum ELevel
 {
+    Lock,
     Level01,
     Level02,
     Level03

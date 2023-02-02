@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Ensign.Unity.MVC;
+using Ensign.Unity;
 public class PlayerView : View<PlayerController, PlayerModel>
 {
     
@@ -14,6 +15,8 @@ public class PlayerView : View<PlayerController, PlayerModel>
     [Space, Header("Script Object")]
     [SerializeField] private UIManager _uiManager;
 
+    private float _timeDelay = 0.1f;
+
     private void Start()
     {
         this.Controller.ChangeCurrentPosition(transform.position);
@@ -22,10 +25,7 @@ public class PlayerView : View<PlayerController, PlayerModel>
     private void Update()
     {
         RoiXuongDayXaHoi();
-        if(GameManager.Instance.StatusGameIs() != EStatusGame.GameOver){
-            Move();
-            }
-            // MovePlayer();
+        Move();
     }
     private void MovePlayer()
     { 
@@ -70,39 +70,75 @@ public class PlayerView : View<PlayerController, PlayerModel>
     // Test move player
     void Move()
     {
-        if(Input.GetKeyDown(KeyCode.W))
+        if(Input.GetKeyDown(KeyCode.W) || Input.GetMouseButtonDown(0))
         {
-            transform.position += new Vector3(1, 0, 0);
-            PreventPlayerTurning();
-            RotatePlayer(0);
-            Jump();
-            GameManager.Instance.IncreaseScore();
-            SoundManager.Instance.PlaySound(EActionSound.PlayerMove);
+            MoveToTop();
         }
         if(Input.GetKeyDown(KeyCode.S))
         {
-            transform.position -= new Vector3(1, 0, 0);
+            MoveToBottom();
+        }
+        if(Input.GetKeyDown(KeyCode.D))
+        {
+            MoveToRight();
+        }
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            MoveToLeft();
+        }
+    }
+    public void MoveToTop()
+    {
+        if(GameManager.Instance.StatusGameIs() != EStatusGame.GameOver && this.Model.InPlane)
+        {
+            Jump();
+            this.ActionWaitTime(_timeDelay, () => {
+                transform.position += new Vector3(1, 0, 0);
+            });
+            PreventPlayerTurning();
+            RotatePlayer(0);
+            GameManager.Instance.IncreaseScore();
+            SoundManager.Instance.PlaySound(EActionSound.PlayerMove);
+        }
+    }
+    public void MoveToBottom()
+    {
+        if(GameManager.Instance.StatusGameIs() != EStatusGame.GameOver && this.Model.InPlane)
+        {
+            Jump();
+            this.ActionWaitTime(_timeDelay, () => {
+                transform.position -= new Vector3(1, 0, 0);
+            });
             PreventPlayerTurning();
             RotatePlayer(180);
-            Jump();
             _uiManager.OpenPopup(EActionUI.PopupStatusRealTime);
             SoundManager.Instance.PlaySound(EActionSound.PlayerMove);
             Debug.Log("You can't comeback");
         }
-        if(Input.GetKeyDown(KeyCode.D))
+    }
+    public void MoveToLeft()
+    {
+        if(GameManager.Instance.StatusGameIs() != EStatusGame.GameOver && this.Model.InPlane)
         {
-            transform.position -= new Vector3(0, 0, 1);
-            PreventPlayerTurning();
-            RotatePlayer(90);
             Jump();
-            SoundManager.Instance.PlaySound(EActionSound.PlayerMove);
-        }
-        if(Input.GetKeyDown(KeyCode.A))
-        {
-            transform.position += new Vector3(0, 0, 1);
+            this.ActionWaitTime(_timeDelay, () => {
+                transform.position += new Vector3(0, 0, 1);
+            });
             PreventPlayerTurning();
             RotatePlayer(-90);
+            SoundManager.Instance.PlaySound(EActionSound.PlayerMove);
+        }
+    }
+    public void MoveToRight()
+    {
+        if(GameManager.Instance.StatusGameIs() != EStatusGame.GameOver && this.Model.InPlane)
+        {
             Jump();
+            this.ActionWaitTime(_timeDelay, () => {
+                transform.position -= new Vector3(0, 0, 1);
+            });
+            PreventPlayerTurning();
+            RotatePlayer(90);
             SoundManager.Instance.PlaySound(EActionSound.PlayerMove);
         }
     }
