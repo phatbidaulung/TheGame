@@ -26,6 +26,7 @@ public class PlayerView : View<PlayerController, PlayerModel>
     {
         RoiXuongDayXaHoi();
         Move();
+        MoveWithTouch();
     }
     private void MovePlayer()
     { 
@@ -148,6 +149,28 @@ public class PlayerView : View<PlayerController, PlayerModel>
         if(transform.position.x <= (GameManager.Instance.MaxPositionPlayer().x - 3))
         {
             GameManager.Instance.GameOver();
+        }
+    }
+    private void MoveWithTouch()
+    {
+        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            this.Model.StartTouchPosition = Input.GetTouch(0).position;
+        }
+
+        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        {
+            this.Model.EndTouchPosition = Input.GetTouch(0).position;
+
+            if(this.Model.EndTouchPosition.x < this.Model.StartTouchPosition.x)
+            {
+                MoveToRight();
+            }
+
+            if(this.Model.EndTouchPosition.x > this.Model.StartTouchPosition.x)
+            {
+                MoveToLeft();
+            }
         }
     }
     private void RotatePlayer(float index)

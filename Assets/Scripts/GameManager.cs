@@ -86,6 +86,23 @@ public class GameManager : Singleton<GameManager>
         Time.timeScale = 0f;
     }
 
+    private void CreateNewMap()
+    {
+        if(_score % 10 == 0)
+        {
+            switch (_typeMap)
+            {
+                case ETypeMap.EndLessMap:
+                    RenderMapEndless.Instance.CreateNewMap();
+                    break;
+                case ETypeMap.NormalMap:
+                    RenderMapNormal.Instance.CreateNewMap();
+                    break;
+            }
+            Debug.Log("Create new maps");
+        }
+    }
+
     public Vector3 MaxPositionPlayer() => _maxPositionPlayer;
     public float Score() => _score;
     public ETypeMap TypeMapInThisSceneIs() => _typeMap;

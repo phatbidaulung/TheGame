@@ -26,8 +26,8 @@ public class DestroyMap : MonoBehaviour
                     case ETypeMap.NormalMap:
                         RenderMapNormal.Instance.CreateNewMap();
                         break;
-                    }
-                    Debug.Log("Create new maps");
+                }
+                Debug.Log("Create new maps");
             }
             _map.Recycle();
         }
