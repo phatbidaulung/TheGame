@@ -1,12 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-using Ensign;
-using Ensign.Model;
 using Ensign.Tween;
-using Ensign.UniRx;
 using Ensign.Unity;
 
 [Resource("UIBase", IsDontDestroy = false)]

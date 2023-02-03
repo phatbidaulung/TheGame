@@ -1,6 +1,6 @@
-using UnityEngine;
-using Ensign;
 using System;
+using UnityEngine;
+
 using Ensign.Unity;
 public class SoundManager : Singleton<SoundManager>
 {

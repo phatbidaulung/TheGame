@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 using Ensign.Unity;
@@ -22,9 +20,6 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private UIManager _uiManager;
     [SerializeField] private DataManager _dataManager;
     #endregion
-    private void Start() 
-    {
-    }
     public void IncreaseScore()
     {
         // Only endless mode

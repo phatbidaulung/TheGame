@@ -1,13 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 using TMPro;
 
-using Ensign;
 using Ensign.Unity;
-using Ensign.Tween;
 
 public class UILoading : UIBase
 {

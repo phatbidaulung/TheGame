@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Ensign.Unity;
 using TMPro;
+
+using Ensign.Unity;
 public class PopupStatusRealTime : UIBase
 {
     [SerializeField] private TMP_Text _textStatus;

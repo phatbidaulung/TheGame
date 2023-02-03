@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using Ensign;
 using Ensign.Unity.MVC;
 public class PlayerController : Controller<PlayerController, PlayerModel>
 {
@@ -12,7 +11,8 @@ public class PlayerController : Controller<PlayerController, PlayerModel>
         this.ChangeModel(new PlayerModel
         {
             JumpForce = 100f,
-            Speed = 10f,
+            TimeDelay = 0.1f,
+            Speed = 0.5f,
             InPlane = true
         });
     }
@@ -21,5 +21,30 @@ public class PlayerController : Controller<PlayerController, PlayerModel>
     public void CanMove(bool input)
     {
         this.Model.InPlane = input;
+    }
+    public void PreventPlayerTurning(Vector3 index)
+    {
+        // Deduction 2 because player can come back 3 times. with time 3rd game over
+        if(index.x <= (GameManager.Instance.MaxPositionPlayer().x - 3))
+        {
+            GameManager.Instance.GameOver();
+        }
+    }
+    public void Jump(Rigidbody rb)
+    {
+        rb.AddForce(0f, this.Model.JumpForce, 0f);
+    }
+    public void PlayerBecomeGhost(Rigidbody rb, Collider cld)
+    {
+        rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
+        cld.isTrigger = true;
+    }
+    public void RoiXuongDayXaHoi(Vector3 index)
+    {
+        if(index.y < 0)
+        {
+            // Debug.Log("You are DatVila :>");
+            GameManager.Instance.GameOver();
+        }
     }
 }

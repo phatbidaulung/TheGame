@@ -4,6 +4,7 @@ using UnityEngine;
 
 using Ensign.Unity.MVC;
 using Ensign.Unity;
+using Ensign.Tween;
 public class PlayerView : View<PlayerController, PlayerModel>
 {
     
@@ -15,8 +16,6 @@ public class PlayerView : View<PlayerController, PlayerModel>
     [Space, Header("Script Object")]
     [SerializeField] private UIManager _uiManager;
 
-    private float _timeDelay = 0.1f;
-
     private void Start()
     {
         this.Controller.ChangeCurrentPosition(transform.position);
@@ -24,9 +23,9 @@ public class PlayerView : View<PlayerController, PlayerModel>
 
     private void Update()
     {
-        RoiXuongDayXaHoi();
+        this.Controller.RoiXuongDayXaHoi(transform.position);
         Move();
-        MoveWithTouch();
+        // MoveWithTouch();
     }
     private void MovePlayer()
     { 
@@ -44,26 +43,26 @@ public class PlayerView : View<PlayerController, PlayerModel>
             {
                 this.Controller.ChangeNextPosition(new Vector3(this.Model.NextPosition.x, this.Model.NextPosition.y, 1));
                 RotatePlayer(-90);
-                Jump();
+                this.Controller.Jump(_rb);
             }
             else if(Input.GetKeyDown(KeyCode.D))
             {
                 this.Controller.ChangeNextPosition(new Vector3(this.Model.NextPosition.x, this.Model.NextPosition.y, -1));
                 RotatePlayer(90);
-                Jump();
+                this.Controller.Jump(_rb);
             }
             else if(Input.GetKeyDown(KeyCode.W))
             {
                 this.Controller.ChangeNextPosition(new Vector3(1, this.Model.NextPosition.y, this.Model.NextPosition.z));
                 RotatePlayer(0);
-                Jump();
+                this.Controller.Jump(_rb);
                 GameManager.Instance.IncreaseScore();
             }
             else if(Input.GetKeyDown(KeyCode.S))
             {
                 this.Controller.ChangeNextPosition(new Vector3(-1, this.Model.NextPosition.y, this.Model.NextPosition.z));
                 RotatePlayer(180);
-                Jump();
+                this.Controller.Jump(_rb);
             }
         }
     }
@@ -71,32 +70,40 @@ public class PlayerView : View<PlayerController, PlayerModel>
     // Test move player
     void Move()
     {
-        if(Input.GetKeyDown(KeyCode.W) || Input.GetMouseButtonDown(0))
+        if(Input.GetKeyDown(KeyCode.W))
         {
             MoveToTop();
+            Debug.Log("W");
         }
         if(Input.GetKeyDown(KeyCode.S))
         {
             MoveToBottom();
+            Debug.Log("S");
         }
         if(Input.GetKeyDown(KeyCode.D))
         {
             MoveToRight();
+            Debug.Log("D");
         }
         if(Input.GetKeyDown(KeyCode.A))
         {
             MoveToLeft();
+            Debug.Log("A");
+        }
+        if(transform.position.x == this.Model.NextPosition.x && transform.position.z == this.Model.NextPosition.z)
+        {
+            this.Controller.CanMove(true);
         }
     }
     public void MoveToTop()
     {
         if(GameManager.Instance.StatusGameIs() != EStatusGame.GameOver && this.Model.InPlane)
         {
-            Jump();
-            this.ActionWaitTime(_timeDelay, () => {
-                transform.position += new Vector3(1, 0, 0);
-            });
-            PreventPlayerTurning();
+            this.Controller.Jump(_rb);
+            this.Model.NextPosition = transform.position + new Vector3(1, 0, 0);
+            LeanTween.moveLocalX(gameObject, this.Model.NextPosition.x, this.Model.Speed);
+            this.Model.InPlane = false;
+            this.Controller.PreventPlayerTurning(transform.position);
             RotatePlayer(0);
             GameManager.Instance.IncreaseScore();
             SoundManager.Instance.PlaySound(EActionSound.PlayerMove);
@@ -106,11 +113,11 @@ public class PlayerView : View<PlayerController, PlayerModel>
     {
         if(GameManager.Instance.StatusGameIs() != EStatusGame.GameOver && this.Model.InPlane)
         {
-            Jump();
-            this.ActionWaitTime(_timeDelay, () => {
-                transform.position -= new Vector3(1, 0, 0);
-            });
-            PreventPlayerTurning();
+            this.Controller.Jump(_rb);
+            this.Model.NextPosition = transform.position - new Vector3(1, 0, 0);
+            LeanTween.moveLocalX(gameObject, this.Model.NextPosition.x, this.Model.Speed);
+            this.Model.InPlane = false;
+            this.Controller.PreventPlayerTurning(transform.position);
             RotatePlayer(180);
             _uiManager.OpenPopup(EActionUI.PopupStatusRealTime);
             SoundManager.Instance.PlaySound(EActionSound.PlayerMove);
@@ -121,36 +128,30 @@ public class PlayerView : View<PlayerController, PlayerModel>
     {
         if(GameManager.Instance.StatusGameIs() != EStatusGame.GameOver && this.Model.InPlane)
         {
-            Jump();
-            this.ActionWaitTime(_timeDelay, () => {
-                transform.position += new Vector3(0, 0, 1);
-            });
-            PreventPlayerTurning();
+            this.Controller.Jump(_rb);
+            this.Model.NextPosition = transform.position + new Vector3(0, 0, 1);
+            LeanTween.moveLocalZ(gameObject, this.Model.NextPosition.z, this.Model.Speed);
+            this.Model.InPlane = false;
+            this.Controller.PreventPlayerTurning(transform.position);
             RotatePlayer(-90);
             SoundManager.Instance.PlaySound(EActionSound.PlayerMove);
+            Debug.Log(this.Model.NextPosition.z);
         }
     }
     public void MoveToRight()
     {
         if(GameManager.Instance.StatusGameIs() != EStatusGame.GameOver && this.Model.InPlane)
         {
-            Jump();
-            this.ActionWaitTime(_timeDelay, () => {
-                transform.position -= new Vector3(0, 0, 1);
-            });
-            PreventPlayerTurning();
+            this.Controller.Jump(_rb);
+            this.Model.NextPosition = transform.position - new Vector3(0, 0, 1);
+            LeanTween.moveLocalZ(gameObject, this.Model.NextPosition.z, this.Model.Speed);
+            this.Model.InPlane = false;
+            this.Controller.PreventPlayerTurning(transform.position);
             RotatePlayer(90);
             SoundManager.Instance.PlaySound(EActionSound.PlayerMove);
         }
     }
-    private void PreventPlayerTurning()
-    {
-        // Deduction 2 because player can come back 3 times. with time 3rd game over
-        if(transform.position.x <= (GameManager.Instance.MaxPositionPlayer().x - 3))
-        {
-            GameManager.Instance.GameOver();
-        }
-    }
+    
     private void MoveWithTouch()
     {
         if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
@@ -175,25 +176,13 @@ public class PlayerView : View<PlayerController, PlayerModel>
     }
     private void RotatePlayer(float index)
     {
-        transform.eulerAngles  = new Vector3(0, index, 0);
-    }
-    private void Jump()
-    {
-        _rb.AddForce(0f, this.Model.JumpForce, 0f);
+        transform.rotation = Quaternion.Euler(0f, index, 0f);
     }
     public void PlayerBecomeGhost()
     {
-        _rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
-        _playerCollider.isTrigger = true;
+        this.Controller.PlayerBecomeGhost(_rb, _playerCollider);
     }
-    private void RoiXuongDayXaHoi()
-    {
-        if(transform.position.y < 0)
-        {
-            Debug.Log("You are DatVila :>");
-            GameManager.Instance.GameOver();
-        }
-    }
+    
     private void OnCollisionEnter(Collision other) {
         if(other.gameObject.tag == "Enemy")
         {
@@ -202,14 +191,14 @@ public class PlayerView : View<PlayerController, PlayerModel>
         }
         if(other.gameObject.tag == "Plane")
         {
-            this.Controller.CanMove(true);  
+            // this.Controller.CanMove(true);  
         }
     }
     private void OnCollisionExit(Collision other) 
     {
         if(other.gameObject.tag == "Plane")
         {
-            this.Controller.CanMove(false);  
+            // this.Controller.CanMove(false);  
         } 
     }
 }
