@@ -12,7 +12,7 @@ public class PlayerController : Controller<PlayerController, PlayerModel>
         {
             JumpForce = 100f,
             TimeDelay = 0.1f,
-            Speed = 0.5f,
+            Speed = 0.2f,
             InPlane = true
         });
     }

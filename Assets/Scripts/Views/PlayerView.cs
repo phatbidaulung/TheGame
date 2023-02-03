@@ -90,10 +90,6 @@ public class PlayerView : View<PlayerController, PlayerModel>
             MoveToLeft();
             Debug.Log("A");
         }
-        if(transform.position.x == this.Model.NextPosition.x && transform.position.z == this.Model.NextPosition.z)
-        {
-            this.Controller.CanMove(true);
-        }
     }
     public void MoveToTop()
     {
@@ -191,14 +187,14 @@ public class PlayerView : View<PlayerController, PlayerModel>
         }
         if(other.gameObject.tag == "Plane")
         {
-            // this.Controller.CanMove(true);  
+            this.Controller.CanMove(true);  
         }
     }
     private void OnCollisionExit(Collision other) 
     {
         if(other.gameObject.tag == "Plane")
         {
-            // this.Controller.CanMove(false);  
+            this.Controller.CanMove(false);  
         } 
     }
 }
