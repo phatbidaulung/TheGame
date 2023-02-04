@@ -55,8 +55,8 @@ MonoBehaviour:
   enableAutoAnalytic: 0
   enableCollectEvent: 0
   enableLogFile: 0
-  timeTrigger: 2023/02/04 23:21:44.632.+07:00
-  gitBranchName: fix-bug
-  gitCommit: c3a546c4d5a46a47b640ce76fa15357beea499a6
+  timeTrigger: 2023/02/05 00:24:13.990.+07:00
+  gitBranchName: master
+  gitCommit: 5901dd293a74bcd72b41f131b8cd8e1155648173
   esCodeVersion: 1.0.3-preview.8
   ensignPath: Ensign/Common
