@@ -51,23 +51,27 @@ public class PlayerView : View<PlayerController, PlayerModel>
                     this.Model.NextPosition = transform.position + new Vector3(1, 0, 0);
                     LeanTween.moveLocalX(gameObject, this.Model.NextPosition.x, this.Model.Speed);
                     RotatePlayer(0);
+                    _animator.SetTrigger("Jump");
                     GameManager.Instance.IncreaseScore();
                     break;
                 case EMovement.MoveToBottom:
                     this.Model.NextPosition = transform.position - new Vector3(1, 0, 0);
                     LeanTween.moveLocalX(gameObject, this.Model.NextPosition.x, this.Model.Speed);
                     RotatePlayer(180);
+                    _animator.SetTrigger("Jump");
                     _uiManager.OpenPopup(EActionUI.PopupStatusRealTime);
                     break;
                 case EMovement.MoveToLeft:
                     this.Model.NextPosition = transform.position + new Vector3(0, 0, 1);
                     LeanTween.moveLocalZ(gameObject, this.Model.NextPosition.z, this.Model.Speed);
                     RotatePlayer(-90);
+                    _animator.SetTrigger("Jump");
                     break;
                 case EMovement.MoveToRight:
                     this.Model.NextPosition = transform.position - new Vector3(0, 0, 1);
                     LeanTween.moveLocalZ(gameObject, this.Model.NextPosition.z, this.Model.Speed);
                     RotatePlayer(90);
+                    _animator.SetTrigger("Jump");
                     break;
                 
             }
