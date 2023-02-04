@@ -2,10 +2,12 @@ using Ensign.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class RenderMapEndless : Singleton<RenderMapEndless>
+public class RenderMapEndles : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _maps;
+    [SerializeField] private List<GameObject> _mapsCreated;
     [SerializeField] private int _numberOfModule;
+    private int _numeberMapOfList;
 
     private float _locationMap;
     private void Awake() 
@@ -25,7 +27,7 @@ public class RenderMapEndless : Singleton<RenderMapEndless>
     {
         float lengthMap = 10f;
         _locationMap += lengthMap;
-        RandomMap().Spawn(new Vector3(_locationMap, transform.position.y, transform.position.z));
+        _mapsCreated.Add(RandomMap().Spawn(new Vector3(_locationMap, transform.position.y, transform.position.z)));
     }
     private void CreateMap()
     {
@@ -33,11 +35,15 @@ public class RenderMapEndless : Singleton<RenderMapEndless>
             CreateNewMap();
         }
     }
+    public void RecycleMap()
+    {
+        _mapsCreated[_numeberMapOfList].Recycle();
+        _numeberMapOfList++;
+    }
 
     private GameObject RandomMap()
     {
         int index = Random.Range(0, _maps.Count);
-        Debug.Log($"Number map is: {index}");
         return _maps[index];
     }
 }

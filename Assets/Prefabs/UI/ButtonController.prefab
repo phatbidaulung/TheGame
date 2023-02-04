@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8099483759528830832
 RectTransform:
   m_ObjectHideFlags: 0
@@ -135,6 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _typeButton: 0
   _buttonController: {fileID: 2439941341250318877}
+  _playerView: {fileID: 0}
 --- !u!1 &3388862871125283465
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,7 +258,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5275908352303972051
 RectTransform:
   m_ObjectHideFlags: 0
@@ -373,6 +374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _typeButton: 3
   _buttonController: {fileID: 4294397283093710565}
+  _playerView: {fileID: 0}
 --- !u!1 &7312443782468670440
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,7 +394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8356110120640507476
 RectTransform:
   m_ObjectHideFlags: 0
@@ -508,6 +510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _typeButton: 2
   _buttonController: {fileID: 7875940162217730589}
+  _playerView: {fileID: 0}
 --- !u!1 &9151536409339128437
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,7 +530,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6441626388395971385
 RectTransform:
   m_ObjectHideFlags: 0
@@ -643,3 +646,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _typeButton: 1
   _buttonController: {fileID: 6881556636927411529}
+  _playerView: {fileID: 0}

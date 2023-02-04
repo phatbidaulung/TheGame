@@ -5,6 +5,7 @@ using Ensign.Unity;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private PlayerView _player;
+    [SerializeField] private RenderMap _renderMap;
     [SerializeField] private ETypeMap _typeMap;
     [SerializeField] private ELevel _levelMap;
     private EStatusGame _statusGame;
@@ -22,24 +23,33 @@ public class GameManager : Singleton<GameManager>
     #endregion
     public void IncreaseScore()
     {
-        // Only endless mode
-        if((_player.transform.position.x > _maxPositionPlayer.x) && (TypeMapInThisSceneIs() == ETypeMap.EndLessMap))
+        if((_player.transform.position.x > _maxPositionPlayer.x))
         {
             // Increase score
             _score++;
             _maxPositionPlayer = _player.transform.position;
-            Debug.Log($"Score is: {_score}");
 
             // Increases enemy's speed when player's score is greater than a multiple of 10 (10, 20, 30, 40)
             if(_score % 10 == 0)
             { 
-                Debug.Log($"Change speed enemy. Speed enemy is: {SpeedEnemy}");
                 float increaseSpeed = 1f;
                 SpeedEnemy += increaseSpeed;
             }
 
-            // Change score in screen
-            _uiManager.ChangeScore(_score.ToString());
+            // Change score in screen (only endless mode)
+            if(_typeMap == ETypeMap.EndLessMap)
+                _uiManager.ChangeScore(_score.ToString());
+            RenderMap();
+        }
+    }
+
+    public void RenderMap()
+    {
+        if(_score >= 10 && _score % 10 == 0)
+        {        
+            _renderMap.RecycleMap();
+            _renderMap.CreateNewMap();
+            Debug.Log("hhh");
         }
     }
 
@@ -85,15 +95,7 @@ public class GameManager : Singleton<GameManager>
     {
         if(_score % 10 == 0)
         {
-            switch (_typeMap)
-            {
-                case ETypeMap.EndLessMap:
-                    RenderMapEndless.Instance.CreateNewMap();
-                    break;
-                case ETypeMap.NormalMap:
-                    RenderMapNormal.Instance.CreateNewMap();
-                    break;
-            }
+            _renderMap.CreateNewMap();
             Debug.Log("Create new maps");
         }
     }

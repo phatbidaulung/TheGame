@@ -10,14 +10,23 @@ public class PlayerController : Controller<PlayerController, PlayerModel>
         base.Init();
         this.ChangeModel(new PlayerModel
         {
-            JumpForce = 100f,
-            TimeDelay = 0.1f,
-            Speed = 0.2f,
-            InPlane = true
+            JumpForce           = 100f,
+            TimeDelay           = 0.1f,
+            LimitMapLeft        = 4f,
+            LimitMapRight       = 16f,
+            Speed               = 0.2f,
+            NextPosition        = default,
+            InPlane             = true,
+            MAX_SWIPE_TIME      = 0.5f,
+            MIN_SWIPE_DISTANCE  = 0.17f,
+            SwipedRight         = false,
+            SwipedLeft          = false,
+            SwipedDown          = false,
+            SwipedUp            = false,
+            StartPos            = default,
+            StartTime           = 0f
         });
     }
-    public Vector3 ChangeNextPosition(Vector3 input) => this.Model.NextPosition = input;
-    public Vector3 ChangeCurrentPosition(Vector3 input) => this.Model.CurrentPosition = input;
     public void CanMove(bool input)
     {
         this.Model.InPlane = input;

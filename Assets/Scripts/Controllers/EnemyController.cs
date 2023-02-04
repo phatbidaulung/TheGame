@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Ensign.Unity;
+using Ensign.Tween;
 
 public class EnemyController : MonoBehaviour
 {
@@ -17,12 +18,10 @@ public class EnemyController : MonoBehaviour
     private void FixedUpdate() 
     {
         Move();
-        if(transform.position.z >= 20)
-            transform.position = new Vector3(transform.position.x, transform.position.y, -15);
     }
     private void Move()
     {
-        this.transform.position += transform.forward * GameManager.Instance.SpeedEnemy * Time.deltaTime;
+        this.transform.position += transform.forward * GameManager.Instance.SpeedEnemy * Time.fixedDeltaTime;
     }
     private void OnCollisionEnter(Collision other) 
     {

@@ -21,15 +21,15 @@ public class DestroyMap : MonoBehaviour
                 switch (_typeMap)
                 {
                     case ETypeMap.EndLessMap:
-                        RenderMapEndless.Instance.CreateNewMap();
+                        // RenderMapEndless.Instance.CreateNewMap();
                         break;
                     case ETypeMap.NormalMap:
-                        RenderMapNormal.Instance.CreateNewMap();
+                        // RenderMapNormal.Instance.CreateNewMap();
                         break;
                 }
                 Debug.Log("Create new maps");
             }
-            _map.Recycle();
+            // RenderMapEndless.Instance.RecycleMap();
         }
     }
 }
