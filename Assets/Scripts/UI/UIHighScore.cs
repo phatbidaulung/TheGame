@@ -24,14 +24,22 @@ public class UIHighScore : UIBase
     }
     private float GetHighScoreFromFile()
     {
-        ListModel _listData = _dataManager.ListModel();
+        try
+        {
+            ListModel _listData = _dataManager.ListModel();
 
-        var orderByResut = from n in _listData.PlayerModel
-                           orderby n.Score descending
-                           select n;
-                
-        var listLevel = orderByResut.ToArray();
+            var orderByResut = from n in _listData.PlayerModel
+                            orderby n.Score descending
+                            select n;
+                    
+            var listLevel = orderByResut.ToArray();
 
-        return listLevel[0].Score;
+            return listLevel[0].Score;
+        }
+        catch
+        {
+            return 0;
+        }
+        
     }
 }
