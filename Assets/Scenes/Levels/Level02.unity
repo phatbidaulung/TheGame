@@ -493,7 +493,7 @@ MonoBehaviour:
   - {fileID: 892860378949273949, guid: 564cb47f2c45af647b66d85ce5d23394, type: 3}
   - {fileID: 6094189664124838224, guid: 5d3f86aaaaada3e4e9f08cf8018785ad, type: 3}
   _mapsCreated: []
-  _numberOfModuleMap: 5
+  _numberOfModuleMap: 6
 --- !u!4 &596765493
 Transform:
   m_ObjectHideFlags: 0

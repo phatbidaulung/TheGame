@@ -45,7 +45,7 @@ public class GameManager : Singleton<GameManager>
 
     public void RenderMap()
     {
-        if(_score >= 10 && _score % 10 == 0)
+        if(_score >= 20 && _score % 10 == 0)
         {        
             _renderMap.RecycleMap();
             _renderMap.CreateNewMap();
@@ -122,5 +122,14 @@ public enum ELevel
     Lock,
     Level01,
     Level02,
-    Level03
+    Level03,
+    Level04,
+    Level05,
+    Level06,
+    Level07,
+    Level08,
+    Level09,
+    Level10,
+    Level11,
+    Level12
 }
