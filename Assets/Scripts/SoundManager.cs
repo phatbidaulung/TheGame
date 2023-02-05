@@ -7,7 +7,6 @@ public class SoundManager : Singleton<SoundManager>
     [HideInInspector] public static float volume;
     [SerializeField] private Sound[] _sounds;
     private void Awake() {
-        DontDestroyOnLoad(gameObject);
         LoadSounds();
     }
     public void Start() { 

@@ -55,8 +55,8 @@ MonoBehaviour:
   enableAutoAnalytic: 0
   enableCollectEvent: 0
   enableLogFile: 0
-  timeTrigger: 2023/02/05 00:24:13.990.+07:00
-  gitBranchName: master
-  gitCommit: 5901dd293a74bcd72b41f131b8cd8e1155648173
+  timeTrigger: 
+  gitBranchName: 
+  gitCommit: 
   esCodeVersion: 1.0.3-preview.8
   ensignPath: Ensign/Common

@@ -135,7 +135,7 @@ public class PlayerView : View<PlayerController, PlayerModel>
     }
     private void RotatePlayer(float index)
     {
-        transform.rotation = Quaternion.Euler(0f, index, 0f);
+        LeanTween.rotateY(gameObject, index, 0.5f);
     }
     public void PlayerBecomeGhost()
     {
