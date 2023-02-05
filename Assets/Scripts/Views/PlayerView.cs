@@ -135,7 +135,8 @@ public class PlayerView : View<PlayerController, PlayerModel>
     }
     private void RotatePlayer(float index)
     {
-        LeanTween.rotateY(gameObject, index, 0.5f);
+        float timeDelayRotate = 0.2f;
+        LeanTween.rotateY(gameObject, index, timeDelayRotate);
     }
     public void PlayerBecomeGhost()
     {
@@ -148,6 +149,12 @@ public class PlayerView : View<PlayerController, PlayerModel>
             GameManager.Instance.GameOver();
             SoundManager.Instance.PlaySound(EActionSound.PlayerDie);
         }
+        if(other.gameObject.tag == "Plane")
+        {
+            this.Controller.CanMove(true);  
+        }
+    }
+    private void OnCollisionStay(Collision other) {
         if(other.gameObject.tag == "Plane")
         {
             this.Controller.CanMove(true);  

@@ -14,7 +14,7 @@ public class DataManager : MonoBehaviour
         {
             TypeMap = GameManager.Instance.TypeMapInThisSceneIs(),
             LevelMap = GameManager.Instance.LevelMapIs(),
-            Score = GameManager.Instance.Score(),
+            Score = GameManager.Instance.TypeMapInThisSceneIs() == ETypeMap.EndLessMap ? GameManager.Instance.Score() : 0,
             Finish = GameManager.Instance.StatusGameIs() == EStatusGame.Win ? true : false
         });
 
