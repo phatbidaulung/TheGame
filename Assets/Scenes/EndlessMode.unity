@@ -300,11 +300,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8837686921262763228, guid: 70800c9471ecedb46b32b0c6d69728d3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8837686921550451658, guid: 70800c9471ecedb46b32b0c6d69728d3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8837686921846069840, guid: 70800c9471ecedb46b32b0c6d69728d3, type: 3}
       propertyPath: m_Pivot.x
@@ -400,6 +400,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70800c9471ecedb46b32b0c6d69728d3, type: 3}
+--- !u!114 &142165292 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8837686921846069868, guid: 70800c9471ecedb46b32b0c6d69728d3, type: 3}
+  m_PrefabInstance: {fileID: 142165291}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eed7a104c817c340b53eae1e0aaeadb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &154095067
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -647,6 +658,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1396976404}
     m_Modifications:
+    - target: {fileID: 1127501012, guid: 7fa3e7eb6d95da9499622a93076b1e78, type: 3}
+      propertyPath: _uiLoading
+      value: 
+      objectReference: {fileID: 142165292}
     - target: {fileID: 1127501012, guid: 7fa3e7eb6d95da9499622a93076b1e78, type: 3}
       propertyPath: _uiManager
       value: 
@@ -1034,6 +1049,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 113953677826865807, guid: 6583071e168da354e839da10b3781ebe, type: 3}
+      propertyPath: _uiLoading
+      value: 
+      objectReference: {fileID: 142165292}
     - target: {fileID: 113953677826865807, guid: 6583071e168da354e839da10b3781ebe, type: 3}
       propertyPath: _uiManager
       value: 
@@ -1542,7 +1561,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 891d318b76d167e42818512ef26f43c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugWithArrowKeys: 1
+  _loandins: {fileID: 0}
+  _sliderLoading: {fileID: 0}
 --- !u!1 &1576975952 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 642079628182858974, guid: 1739eee65b4adbb4ebf4fbd6a9022213, type: 3}
