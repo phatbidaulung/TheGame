@@ -1,10 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+using TMPro;
+
 using Ensign.Unity;
 public class PopupSetting : UIBase
 {
     [SerializeField] private Button _btnClose;
+    [SerializeField] private TMP_Dropdown _changeMovePlayer;
     [SerializeField] private Slider _sliderVolume;
     [SerializeField] private GameObject _popupSetting;
     [SerializeField] private CanvasGroup _background;
@@ -38,5 +41,21 @@ public class PopupSetting : UIBase
         {
             ClosePopup(this.gameObject);
         });
+    }
+
+    public void ChangeTypeMovement(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                GameManager.Instance.ChangeControllerPlayer(EControl.CrossyRoad);
+                break;
+            case 1:
+                GameManager.Instance.ChangeControllerPlayer(EControl.FPS);
+                break;
+            case 2:
+                GameManager.Instance.ChangeControllerPlayer(EControl.TrafficRoad);
+                break;
+        }
     }
 }

@@ -19,7 +19,12 @@ public class PlayerView : View<PlayerController, PlayerModel>
     private void Update()
     {
         this.Controller.RoiXuongDayXaHoi(transform.position);
-        Move();
+        if(GameManager.Instance.ControlIs() == EControl.CrossyRoad)
+            Move();
+        if(GameManager.Instance.ControlIs() == EControl.FPS)
+            NewMovement();
+        if(GameManager.Instance.ControlIs() == EControl.TrafficRoad)
+            New2Movement();
         MoveWithTouch();
     }
     private void Move()
@@ -143,6 +148,46 @@ public class PlayerView : View<PlayerController, PlayerModel>
         this.Controller.PlayerBecomeGhost(_rb, _playerCollider);
     }
     
+    private void NewMovement()
+    {
+        this.Model.NextPosition = new Vector3(0f, 0f, 0f);
+        if(Input.GetKey(KeyCode.W))
+        {
+            this.Model.NextPosition += new Vector3(1f, 0f, 0f);
+        }
+        if(Input.GetKey(KeyCode.S))
+        {
+            this.Model.NextPosition -= new Vector3(1f, 0f, 0f);
+        }
+        if(Input.GetKey(KeyCode.A))
+        {
+            this.Model.NextPosition += new Vector3(0f, 0f, 1f);
+        }
+        if(Input.GetKey(KeyCode.D))
+        {
+            this.Model.NextPosition -= new Vector3(0f, 0f, 1f);
+        }
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            if(this.Model.InPlane)
+                _rb.AddForce(new Vector3(0f, 200f, 0f));
+        }
+        _rb.AddForce(this.Model.NextPosition * 20f);
+    }
+
+    private void New2Movement()
+    {
+        transform.position += new Vector3(5 * Time.deltaTime, 0, 0);
+        if(Input.GetKey(KeyCode.A))
+        {
+            _rb.AddForce(new Vector3(0f, 0f, 1f) * 30f);
+        }
+        if(Input.GetKey(KeyCode.D))
+        {
+            _rb.AddForce(new Vector3(0f, 0f, -1f) * 30f);
+        }
+    }
+
     private void OnCollisionEnter(Collision other) {
         if(other.gameObject.tag == "Enemy")
         {

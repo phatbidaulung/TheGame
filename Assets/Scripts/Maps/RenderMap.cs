@@ -9,6 +9,7 @@ public class RenderMap : MonoBehaviour
     [SerializeField] private List<GameObject> _maps;
     [SerializeField] private List<GameObject> _mapsCreated;
     [SerializeField] private int _numberOfModuleMap;
+    [SerializeField] private float _lengthMap = 10f;
     private int _numeberMapOfList;
     private int _numberMap;
     private float _locationNewMap;
@@ -32,8 +33,7 @@ public class RenderMap : MonoBehaviour
     }
     public void CreateNewMap()
     {
-        float lengthMap = 10f;
-        _locationNewMap += lengthMap;
+        _locationNewMap += _lengthMap;
 
         switch (_typeMap)
         {

@@ -886,11 +886,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8837686921262763228, guid: 70800c9471ecedb46b32b0c6d69728d3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8837686921550451658, guid: 70800c9471ecedb46b32b0c6d69728d3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8837686921846069840, guid: 70800c9471ecedb46b32b0c6d69728d3, type: 3}
       propertyPath: m_Pivot.x
@@ -982,7 +982,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8837686921846069869, guid: 70800c9471ecedb46b32b0c6d69728d3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70800c9471ecedb46b32b0c6d69728d3, type: 3}

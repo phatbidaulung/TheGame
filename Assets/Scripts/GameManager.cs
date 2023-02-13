@@ -12,6 +12,7 @@ public class GameManager : Singleton<GameManager>
     private float _score;
     #region Player
     private Vector3 _maxPositionPlayer;
+    [SerializeField] private EControl _controlPlayer;
     #endregion
 
     #region Enemy
@@ -105,6 +106,10 @@ public class GameManager : Singleton<GameManager>
     public ETypeMap TypeMapInThisSceneIs() => _typeMap;
     public EStatusGame StatusGameIs() => _statusGame;
     public ELevel LevelMapIs() => _levelMap;
+    public EControl ControlIs() => _controlPlayer;
+    public void ChangeControllerPlayer(EControl index){
+        _controlPlayer = index;
+    }
 }
 public enum ETypeMap
 {
@@ -132,4 +137,11 @@ public enum ELevel
     Level10,
     Level11,
     Level12
+}
+
+public enum EControl
+{
+    CrossyRoad,
+    FPS,
+    TrafficRoad
 }
