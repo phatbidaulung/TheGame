@@ -248,7 +248,7 @@ PrefabInstance:
     - target: {fileID: 747256715372395401, guid: 92b93e3df72f92b4ba5c4d5b2c781fad, type: 3}
       propertyPath: _taget
       value: 
-      objectReference: {fileID: 770374929}
+      objectReference: {fileID: 543395359}
     - target: {fileID: 747256715372395406, guid: 92b93e3df72f92b4ba5c4d5b2c781fad, type: 3}
       propertyPath: m_Name
       value: Camera
@@ -445,7 +445,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 891d318b76d167e42818512ef26f43c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugWithArrowKeys: 1
+  _loandins: {fileID: 0}
+  _sliderLoading: {fileID: 0}
 --- !u!1001 &617045856
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -667,6 +668,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 741771188}
     m_Modifications:
+    - target: {fileID: 1127501012, guid: 7fa3e7eb6d95da9499622a93076b1e78, type: 3}
+      propertyPath: _uiManager
+      value: 
+      objectReference: {fileID: 741771187}
     - target: {fileID: 2277516013797980571, guid: 7fa3e7eb6d95da9499622a93076b1e78, type: 3}
       propertyPath: m_Color.a
       value: 0.003921569
@@ -808,6 +813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiScore: {fileID: 1892064361}
+  _loading: {fileID: 0}
   _popupSetting: {fileID: 699610280}
   _popupStatusGame: {fileID: 1539190999}
   _popupStatusRealTime: {fileID: 1089950736}
@@ -835,11 +841,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &770374929 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8648928918917049628, guid: 454515073420f564a96c7c4f233a7ae1, type: 3}
-  m_PrefabInstance: {fileID: 1793157151}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1062919585
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -43,7 +43,7 @@ public class UIChooseSkin : UIBase
         {
             _selectSkin = _skinDB.SkinsCount - 1;
         }
-        UpdateSkin(_selectSkin);
+        CheckPurchasedSkins(0);
     }
     private void NextSkin()
     {
@@ -53,11 +53,27 @@ public class UIChooseSkin : UIBase
         {
             _selectSkin = 0;
         }
-        UpdateSkin(_selectSkin);
+        CheckPurchasedSkins(1);
+    }
+    private void CheckPurchasedSkins(int index)
+    {
+        Skins _skins = _skinDB.GetSkins(_selectSkin);
+        if(_skins.Buy == false)
+        {
+            if(index == 0){
+                LastSkin();
+            }
+            if(index == 1){
+                NextSkin();
+            }
+        }
+        else{
+            UpdateSkin(_selectSkin);
+        }
     }
     private void UpdateSkin(int index)
     {
-        Skins _skins = _skinDB.GetSkins(index);
+        Skins _skins = _skinDB.GetSkins(index); 
         _skinImage.sprite = _skins.SkinSprite;
         _skinName.text = _skins.SkinName;
         PlayerPrefs.SetInt("selectSkin", _selectSkin);

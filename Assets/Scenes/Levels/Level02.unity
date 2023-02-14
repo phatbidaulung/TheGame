@@ -768,17 +768,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8649265975845412083, guid: 454515073420f564a96c7c4f233a7ae1, type: 3}
   m_PrefabInstance: {fileID: 1427022845}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1427022846}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41d1643bf8655954896afd42fc2d524d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1195713011 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8648928918917049628, guid: 454515073420f564a96c7c4f233a7ae1, type: 3}
-  m_PrefabInstance: {fileID: 1427022845}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1200101462
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -949,6 +944,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 454515073420f564a96c7c4f233a7ae1, type: 3}
+--- !u!1 &1427022846 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8650380762155819264, guid: 454515073420f564a96c7c4f233a7ae1, type: 3}
+  m_PrefabInstance: {fileID: 1427022845}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1452715938
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,6 +979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiScore: {fileID: 1133492630}
+  _loading: {fileID: 0}
   _popupSetting: {fileID: 1972397300}
   _popupStatusGame: {fileID: 213989853}
   _popupStatusRealTime: {fileID: 1600797537}
@@ -1467,7 +1468,7 @@ PrefabInstance:
     - target: {fileID: 747256715372395401, guid: 92b93e3df72f92b4ba5c4d5b2c781fad, type: 3}
       propertyPath: _taget
       value: 
-      objectReference: {fileID: 1195713011}
+      objectReference: {fileID: 1427022846}
     - target: {fileID: 747256715372395406, guid: 92b93e3df72f92b4ba5c4d5b2c781fad, type: 3}
       propertyPath: m_Name
       value: Camera
