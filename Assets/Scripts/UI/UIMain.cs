@@ -12,7 +12,6 @@ public class UIMain : UIBase
     [SerializeField] private Button _btnChosseSkins;
 
     [SerializeField] private UIManager _uiManager;
-    [SerializeField] private UILoading _uiLoading;
 
     private void Start() {
         this._btnSetting.onClick.AddListener(ButtonSetting);
@@ -45,6 +44,6 @@ public class UIMain : UIBase
     private void ButtonEndlessMode()
     {
         SoundManager.Instance.PlaySound(EActionSound.Button);
-        _uiLoading.LoadScene(_endless);
+        _uiManager.LoadSceneWithLoadingPopup(_endless);
     }
 }

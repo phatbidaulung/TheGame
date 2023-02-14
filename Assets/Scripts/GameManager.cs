@@ -21,6 +21,10 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private UIManager _uiManager;
     [SerializeField] private DataManager _dataManager;
     #endregion
+    private void Start() {
+        if(_player == null)
+            _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerView>();
+    }
     public void IncreaseScore()
     {
         if((_player.transform.position.x > _maxPositionPlayer.x))

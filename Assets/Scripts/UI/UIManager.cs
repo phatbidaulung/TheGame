@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class UIManager : UIBase
 {
+    public static UIManager Instance;
     [SerializeField] private UIScore _uiScore;
+    [SerializeField] private UILoading _loading;
     
     [Space, Header("Popups")]
     [SerializeField] private GameObject _popupSetting;
@@ -12,6 +14,10 @@ public class UIManager : UIBase
     [SerializeField] private GameObject _uiStore;
     [SerializeField] private GameObject _uiChooseLevels;
     
+    private void Awkae()
+    {
+        Instance = this;
+    }
     ///<summary>
     ///GameOver or WinGame
     ///</summary>
@@ -44,6 +50,11 @@ public class UIManager : UIBase
                 base.OpenPopup(_uiStore);
                 break;
         }
+    }
+
+    public void LoadSceneWithLoadingPopup(string nameScene)
+    {
+        _loading.LoadScene(nameScene);
     }
 }
 

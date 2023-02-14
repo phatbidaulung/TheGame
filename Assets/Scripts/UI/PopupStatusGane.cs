@@ -16,7 +16,6 @@ public class PopupStatusGane : UIBase
     
     [Space, Header("UI Manager")]
     [SerializeField] private UIManager _uiManager;
-    [SerializeField] private UILoading _uiLoading;
 
     private void Awake() {
         // Prepare for animation 
@@ -36,12 +35,12 @@ public class PopupStatusGane : UIBase
     {
         SoundManager.Instance.PlaySound(EActionSound.Button);
         this.gameObject.SetActive(false);
-        _uiLoading.LoadScene("Main");
+        _uiManager.LoadSceneWithLoadingPopup("Main");
     }
     private void ButtonReset()
     {
         SoundManager.Instance.PlaySound(EActionSound.Button); 
         this.gameObject.SetActive(false);
-        _uiLoading.LoadScene(NameScene());
+        _uiManager.LoadSceneWithLoadingPopup(NameScene());
     }
 }

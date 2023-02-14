@@ -293,6 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiScore: {fileID: 0}
+  _loading: {fileID: 583881423}
   _popupSetting: {fileID: 1776061856}
   _popupStatusGame: {fileID: 346717185}
   _popupStatusRealTime: {fileID: 0}

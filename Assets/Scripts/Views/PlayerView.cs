@@ -13,9 +13,6 @@ public class PlayerView : View<PlayerController, PlayerModel>
     [SerializeField] private Animator _animator;
     [SerializeField] private Collider _playerCollider;
 
-    [Space, Header("Script Object")]
-    [SerializeField] private UIManager _uiManager;
-
     private void Update()
     {
         this.Controller.RoiXuongDayXaHoi(transform.position);
@@ -59,7 +56,7 @@ public class PlayerView : View<PlayerController, PlayerModel>
                     LeanTween.moveLocalX(gameObject, this.Model.NextPosition.x, this.Model.Speed);
                     RotatePlayer(180);
                     _animator.SetTrigger("Jump");
-                    _uiManager.OpenPopup(EActionUI.PopupStatusRealTime);
+                    UIManager.Instance.OpenPopup(EActionUI.PopupStatusRealTime);
                     break;
                 case EMovement.MoveToLeft:
                     this.Model.NextPosition = transform.position + new Vector3(0, 0, 1);
