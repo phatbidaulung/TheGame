@@ -2,25 +2,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 
 public class Test : MonoBehaviour 
 {
-	public GameObject _loandins;
-	public Slider _sliderLoading;
-	public void LoadScene(string nameScene)
-    {
-        StartCoroutine(LoadSceneAsync("EndlessMode"));
+	[SerializeField] private GameObject _player;
+    [SerializeField] private NavMeshAgent _enemy;
+
+    private void Start() {
+        _player = GameObject.FindGameObjectWithTag("Player");
     }
-    IEnumerator LoadSceneAsync(string nameScene)
+    private void FixedUpdate() {
+        Move();
+    }
+    private void Move()
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(nameScene);
-        _loandins.SetActive(true);
-        
-        while (!operation.isDone)
-        {
-            float progressValue = Mathf.Clamp01(operation.progress / 0.9f) / 10f;
-            _sliderLoading.value = progressValue;
-            yield return null;
-        }
+        _enemy.SetDestination(_player.transform.position);       
     }
 }

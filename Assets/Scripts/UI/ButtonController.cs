@@ -15,17 +15,8 @@ public class ButtonController : MonoBehaviour
     {
         switch (type)
         {
-            case EButtonController.ButtonTop:
-                _playerView.Movement(EMovement.MoveToTop);
-                break;
-            case EButtonController.ButtonBottom:
-                _playerView.Movement(EMovement.MoveToBottom);
-                break;
-            case EButtonController.ButtonLeft:
-                _playerView.Movement(EMovement.MoveToLeft);
-                break;
-            case EButtonController.ButtonRight:
-                _playerView.Movement(EMovement.MoveToRight);   
+            
+            case EButtonController.ButtonRight: 
                 break;
         }
     }
