@@ -412,6 +412,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8837686921846069840, guid: 70800c9471ecedb46b32b0c6d69728d3, type: 3}
   m_PrefabInstance: {fileID: 429669483}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &429669485 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8837686921846069868, guid: 70800c9471ecedb46b32b0c6d69728d3, type: 3}
+  m_PrefabInstance: {fileID: 429669483}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eed7a104c817c340b53eae1e0aaeadb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &543395359 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8650380762155819264, guid: 454515073420f564a96c7c4f233a7ae1, type: 3}
@@ -841,7 +852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiScore: {fileID: 1892064361}
-  _loading: {fileID: 0}
+  _loading: {fileID: 429669485}
   _popupSetting: {fileID: 0}
   _popupStatusGame: {fileID: 1539190999}
   _popupStatusRealTime: {fileID: 1089950736}

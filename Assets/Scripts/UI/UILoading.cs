@@ -15,7 +15,6 @@ public class UILoading : UIBase
     [SerializeField] private TextMeshProUGUI _textLoadingValue;
     [SerializeField] private CanvasGroup _loading;
 	[SerializeField] private GameObject _loadingPopup;
-    [SerializeField] private float _timeDelayTurnOffObject = 1.5f;
     
     private float _valueSlider = 0;
 

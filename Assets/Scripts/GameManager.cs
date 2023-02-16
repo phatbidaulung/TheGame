@@ -18,7 +18,7 @@ public class GameManager : Singleton<GameManager>
     [HideInInspector] public float SpeedEnemy = 3f;
     #endregion
     #region UI
-    [SerializeField] private UIManager _uiManager;
+    [SerializeField] private UIManager _uiManager; 
     [SerializeField] private DataManager _dataManager;
     #endregion
     private void Start() {

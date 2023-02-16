@@ -8,6 +8,7 @@ public class Levels : UIBase
     [SerializeField] private ELevel _indexLevel;
     [SerializeField] private TextMeshProUGUI _textLevel;
     [SerializeField] private GameObject _lock;
+    [SerializeField] private UIManager _uiManager;
     private void OnEnable() 
     {
         this._level.onClick.AddListener(ButtonLevel);
@@ -20,6 +21,6 @@ public class Levels : UIBase
     private void ButtonLevel()
     {
         SoundManager.Instance.PlaySound(EActionSound.Button);
-        LoadScenes(_indexLevel.ToString());
+        _uiManager.LoadSceneWithLoadingPopup(_indexLevel.ToString());
     }
 }

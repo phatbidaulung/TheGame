@@ -450,6 +450,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1161f674ee748e04097529ca49cddb2f, type: 3}
+--- !u!224 &536077602 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3277761092454403811, guid: 1161f674ee748e04097529ca49cddb2f, type: 3}
+  m_PrefabInstance: {fileID: 536077601}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &571240794 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8837686921846069840, guid: 70800c9471ecedb46b32b0c6d69728d3, type: 3}
@@ -785,6 +790,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PopupStatusGame
       objectReference: {fileID: 0}
+    - target: {fileID: 113953677826865796, guid: 6583071e168da354e839da10b3781ebe, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 113953677826865800, guid: 6583071e168da354e839da10b3781ebe, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -839,15 +848,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 113953677826865800, guid: 6583071e168da354e839da10b3781ebe, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 113953677826865800, guid: 6583071e168da354e839da10b3781ebe, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 113953677826865800, guid: 6583071e168da354e839da10b3781ebe, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 113953677826865800, guid: 6583071e168da354e839da10b3781ebe, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -869,6 +878,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 113953677826865807, guid: 6583071e168da354e839da10b3781ebe, type: 3}
+      propertyPath: _uiManager
+      value: 
+      objectReference: {fileID: 1452715939}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6583071e168da354e839da10b3781ebe, type: 3}
 --- !u!1001 &1427022845
@@ -979,8 +992,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiScore: {fileID: 1133492630}
-  _loading: {fileID: 0}
-  _popupSetting: {fileID: 1972397300}
+  _loading: {fileID: 1866882310}
+  _popupSetting: {fileID: 0}
   _popupStatusGame: {fileID: 213989853}
   _popupStatusRealTime: {fileID: 1600797537}
   _uiChooseSkins: {fileID: 0}
@@ -1001,7 +1014,7 @@ Transform:
   - {fileID: 213989854}
   - {fileID: 1600797543}
   - {fileID: 1133492626}
-  - {fileID: 1972397301}
+  - {fileID: 536077602}
   - {fileID: 571240794}
   - {fileID: 1648955180}
   m_Father: {fileID: 0}
@@ -1414,6 +1427,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70800c9471ecedb46b32b0c6d69728d3, type: 3}
+--- !u!114 &1866882310 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8837686921846069868, guid: 70800c9471ecedb46b32b0c6d69728d3, type: 3}
+  m_PrefabInstance: {fileID: 1866882309}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eed7a104c817c340b53eae1e0aaeadb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1906648011
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1475,13 +1499,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92b93e3df72f92b4ba5c4d5b2c781fad, type: 3}
---- !u!1 &1972397300 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8179228260508114778, guid: 1161f674ee748e04097529ca49cddb2f, type: 3}
-  m_PrefabInstance: {fileID: 536077601}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &1972397301 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8179228260508114782, guid: 1161f674ee748e04097529ca49cddb2f, type: 3}
-  m_PrefabInstance: {fileID: 536077601}
-  m_PrefabAsset: {fileID: 0}

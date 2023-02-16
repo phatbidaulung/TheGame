@@ -9,9 +9,7 @@ public class UIHighScore : UIBase
     [SerializeField] private DataManager _dataManager;
     [SerializeField] private TMP_Text _text;
     [SerializeField] private CanvasGroup _background;
-    [SerializeField] private GameObject _popup;
-    [SerializeField] private float _timeDelayTurnOffObject = 1f;
-    [SerializeField] private float _timeChangeAlpha = 1f;
+    [SerializeField] private GameObject _popup; 
     private void OnEnable() {
         _text.text = "High score: " + GetHighScoreFromFile().ToString();
         _background.alpha = 1f;

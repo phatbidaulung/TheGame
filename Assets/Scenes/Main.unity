@@ -332,6 +332,30 @@ PrefabInstance:
       propertyPath: m_VerticalScrollbar
       value: 
       objectReference: {fileID: 30035544}
+    - target: {fileID: 445904732504529171, guid: 160681bd552c82247a18c568acb6e038, type: 3}
+      propertyPath: _uiManager
+      value: 
+      objectReference: {fileID: 177120386}
+    - target: {fileID: 537250529499615743, guid: 160681bd552c82247a18c568acb6e038, type: 3}
+      propertyPath: _uiManager
+      value: 
+      objectReference: {fileID: 177120386}
+    - target: {fileID: 1375836697166230507, guid: 160681bd552c82247a18c568acb6e038, type: 3}
+      propertyPath: _uiManager
+      value: 
+      objectReference: {fileID: 177120386}
+    - target: {fileID: 2529818810668892709, guid: 160681bd552c82247a18c568acb6e038, type: 3}
+      propertyPath: _uiManager
+      value: 
+      objectReference: {fileID: 177120386}
+    - target: {fileID: 3918025974788444223, guid: 160681bd552c82247a18c568acb6e038, type: 3}
+      propertyPath: _uiManager
+      value: 
+      objectReference: {fileID: 177120386}
+    - target: {fileID: 4036150200471549454, guid: 160681bd552c82247a18c568acb6e038, type: 3}
+      propertyPath: _uiManager
+      value: 
+      objectReference: {fileID: 177120386}
     - target: {fileID: 4036150202020200506, guid: 160681bd552c82247a18c568acb6e038, type: 3}
       propertyPath: m_Name
       value: UIChooseLevels
@@ -424,6 +448,30 @@ PrefabInstance:
       propertyPath: _dataManager
       value: 
       objectReference: {fileID: 1634293813}
+    - target: {fileID: 4108363738238711187, guid: 160681bd552c82247a18c568acb6e038, type: 3}
+      propertyPath: _uiManager
+      value: 
+      objectReference: {fileID: 177120386}
+    - target: {fileID: 4243360143604633203, guid: 160681bd552c82247a18c568acb6e038, type: 3}
+      propertyPath: _uiManager
+      value: 
+      objectReference: {fileID: 177120386}
+    - target: {fileID: 6287725247104163042, guid: 160681bd552c82247a18c568acb6e038, type: 3}
+      propertyPath: _uiManager
+      value: 
+      objectReference: {fileID: 177120386}
+    - target: {fileID: 6874897910440021002, guid: 160681bd552c82247a18c568acb6e038, type: 3}
+      propertyPath: _uiManager
+      value: 
+      objectReference: {fileID: 177120386}
+    - target: {fileID: 8083570944527943878, guid: 160681bd552c82247a18c568acb6e038, type: 3}
+      propertyPath: _uiManager
+      value: 
+      objectReference: {fileID: 177120386}
+    - target: {fileID: 8280677711993173434, guid: 160681bd552c82247a18c568acb6e038, type: 3}
+      propertyPath: _uiManager
+      value: 
+      objectReference: {fileID: 177120386}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 160681bd552c82247a18c568acb6e038, type: 3}
 --- !u!114 &583881423 stripped
@@ -1204,6 +1252,10 @@ PrefabInstance:
     - target: {fileID: 1119437597823032452, guid: 8df29cc0544f3c94fad5083f201ff526, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 469.16345
+      objectReference: {fileID: 0}
+    - target: {fileID: 1119437597823032455, guid: 8df29cc0544f3c94fad5083f201ff526, type: 3}
+      propertyPath: m_StartAxis
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1119437598043326503, guid: 8df29cc0544f3c94fad5083f201ff526, type: 3}
       propertyPath: m_AnchorMax.y
