@@ -16,28 +16,28 @@ public class PlayerView : View<PlayerController, PlayerModel>
     private void Update()
     {
         this.Controller.RoiXuongDayXaHoi(transform.position);
-        Move();
+        // Move();
         MoveWithTouch();
     }
-    private void Move()
-    {
-        if(Input.GetKeyDown(KeyCode.W))
-        {
-            Movement(EMovement.MoveToTop);
-        }
-        if(Input.GetKeyDown(KeyCode.S))
-        {
-            Movement(EMovement.MoveToBottom);
-        }
-        if(Input.GetKeyDown(KeyCode.D))
-        {
-            Movement(EMovement.MoveToRight);
-        }
-        if(Input.GetKeyDown(KeyCode.A))
-        {
-            Movement(EMovement.MoveToLeft);
-        }
-    }
+    // private void Move()
+    // {
+    //     if(Input.GetKeyDown(KeyCode.W))
+    //     {
+    //         Movement(EMovement.MoveToTop);
+    //     }
+    //     if(Input.GetKeyDown(KeyCode.S))
+    //     {
+    //         Movement(EMovement.MoveToBottom);
+    //     }
+    //     if(Input.GetKeyDown(KeyCode.D))
+    //     {
+    //         Movement(EMovement.MoveToRight);
+    //     }
+    //     if(Input.GetKeyDown(KeyCode.A))
+    //     {
+    //         Movement(EMovement.MoveToLeft);
+    //     }
+    // }
     public void Movement(EMovement typeMove)
     {
         if(GameManager.Instance.StatusGameIs() != EStatusGame.GameOver && this.Model.InPlane)
@@ -47,36 +47,98 @@ public class PlayerView : View<PlayerController, PlayerModel>
                 case EMovement.MoveToTop:
                     this.Model.NextPosition = transform.position + new Vector3(1, 0, 0);
                     LeanTween.moveLocalX(gameObject, this.Model.NextPosition.x, this.Model.Speed);
+                    this.Controller.Jump(gameObject);
                     RotatePlayer(0);
-                    _animator.SetTrigger("Jump");
-                    GameManager.Instance.IncreaseScore();
+                    // GameManager.Instance.IncreaseScore();
                     break;
                 case EMovement.MoveToBottom:
                     this.Model.NextPosition = transform.position - new Vector3(1, 0, 0);
                     LeanTween.moveLocalX(gameObject, this.Model.NextPosition.x, this.Model.Speed);
+                    this.Controller.Jump(gameObject);
                     RotatePlayer(180);
-                    _animator.SetTrigger("Jump");
                     UIManager.Instance.OpenPopup(EActionUI.PopupStatusRealTime);
                     break;
                 case EMovement.MoveToLeft:
                     this.Model.NextPosition = transform.position + new Vector3(0, 0, 1);
                     LeanTween.moveLocalZ(gameObject, this.Model.NextPosition.z, this.Model.Speed);
+                    this.Controller.Jump(gameObject);
                     RotatePlayer(-90);
-                    _animator.SetTrigger("Jump");
                     break;
                 case EMovement.MoveToRight:
                     this.Model.NextPosition = transform.position - new Vector3(0, 0, 1);
                     LeanTween.moveLocalZ(gameObject, this.Model.NextPosition.z, this.Model.Speed);
+                    this.Controller.Jump(gameObject);
                     RotatePlayer(90);
-                    _animator.SetTrigger("Jump");
                     break;
                 
             }
 
-            this.Controller.Jump(_rb);
             this.Controller.PreventPlayerTurning(transform.position);
             SoundManager.Instance.PlaySound(EActionSound.PlayerMove);
         }
+    }
+
+    private void Move()
+    {
+        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            this.Model.startTouchPosition = Input.GetTouch(0).position;
+        }
+
+        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+        {
+            this.Model.currentPosition = Input.GetTouch(0).position;
+            Vector2 distance = this.Model.currentPosition - this.Model.startTouchPosition;
+
+            if(!this.Model.stopTouch)
+            {
+                // Left
+                if(distance.x < -this.Model.swipeRange)
+                {
+                    this.Model.stopTouch = true;
+                    Movement(EMovement.MoveToLeft);
+                }
+                // Right
+                else if(distance.x > this.Model.swipeRange)
+                {
+                    this.Model.stopTouch = true;
+                    Movement(EMovement.MoveToRight);
+                }
+                // Up
+                else if(distance.y > this.Model.swipeRange)
+                {
+                    this.Model.stopTouch = true;
+                    Movement(EMovement.MoveToTop);
+                }
+                //Down
+                else if(distance.y < -this.Model.swipeRange)
+                {
+                    this.Model.stopTouch = true;
+                    Movement(EMovement.MoveToBottom);
+                }
+
+            }
+        }
+
+        // Tap
+        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        {
+            this.Model.stopTouch = false;
+            this.Model.endTouchPosition = Input.GetTouch(0).position;
+            Vector2 distance = this.Model.endTouchPosition - this.Model.startTouchPosition;
+            if(Mathf.Abs(distance.x) < this.Model.tapRange && Mathf.Abs(distance.y) < this.Model.tapRange)
+            {
+                Movement(EMovement.MoveToTop);
+            }
+        }
+    }
+    public void Scale()
+    {
+        float valueScaleChange = 1.7f;
+        float valueScaleDefaut = 2f;
+        float timeChange = 0.1f;
+        LeanTween.scaleY(this.gameObject,valueScaleChange, timeChange);
+        LeanTween.scaleY(this.gameObject, valueScaleDefaut, timeChange).setDelay(timeChange);
     }
     
     private void MoveWithTouch()

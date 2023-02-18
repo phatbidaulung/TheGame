@@ -4,6 +4,8 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
 
+using Ensign.Tween;
+
 public class Test : MonoBehaviour 
 {
     
@@ -67,7 +69,17 @@ public class Test : MonoBehaviour
             if(Mathf.Abs(distance.x) < tapRange && Mathf.Abs(distance.y) < tapRange)
             {
                 _text.text = "Tap";
+                Scale();
             }
         }
+    }
+
+    public void Scale()
+    {
+        float valueScaleChange = 1.7f;
+        float valueScaleDefaut = 2f;
+        float timeChange = 0.1f;
+        LeanTween.scaleY(this.gameObject,valueScaleChange, timeChange);
+        LeanTween.scaleY(this.gameObject, valueScaleDefaut, timeChange).setDelay(timeChange);
     }
 }

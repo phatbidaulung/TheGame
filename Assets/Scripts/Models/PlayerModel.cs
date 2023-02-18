@@ -25,6 +25,14 @@ public class PlayerModel : IDataModel
 	public bool SwipedDown = false;
 	public Vector2 StartPos;
 	public float StartTime;
+
+    //
+    public Vector2 startTouchPosition;
+    public Vector2 currentPosition;
+    public Vector2 endTouchPosition;
+    public bool stopTouch;
+    public float swipeRange;
+    public float tapRange;
 }
 
 public enum EMovement

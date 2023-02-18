@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Ensign.Tween;
+
 using Ensign.Unity.MVC;
 public class PlayerController : Controller<PlayerController, PlayerModel>
 {
@@ -10,7 +12,7 @@ public class PlayerController : Controller<PlayerController, PlayerModel>
         base.Init();
         this.ChangeModel(new PlayerModel
         {
-            JumpForce           = 100f,
+            JumpForce           = 2f,
             TimeDelay           = 0.1f,
             LimitMapLeft        = 4f,
             LimitMapRight       = 16f,
@@ -24,7 +26,14 @@ public class PlayerController : Controller<PlayerController, PlayerModel>
             SwipedDown          = false,
             SwipedUp            = false,
             StartPos            = default,
-            StartTime           = 0f
+            StartTime           = 0f,
+
+            startTouchPosition = default,
+            currentPosition = default,
+            endTouchPosition = default,
+            stopTouch = false,
+            swipeRange = 50f,
+            tapRange = 10
         });
     }
     public void CanMove(bool input)
@@ -39,9 +48,10 @@ public class PlayerController : Controller<PlayerController, PlayerModel>
             GameManager.Instance.GameOver();
         }
     }
-    public void Jump(Rigidbody rb)
+    public void Jump(GameObject taget)
     {
-        rb.AddForce(0f, this.Model.JumpForce, 0f);
+        LeanTween.moveLocalY(taget, taget.transform.position.y + this.Model.JumpForce, this.Model.Speed / 2).setEase(LeanTweenType.easeOutQuart);
+        LeanTween.moveLocalY(taget, taget.transform.position.y, this.Model.Speed / 2).setDelay(this.Model.Speed / 2).setEase(LeanTweenType.easeInQuart);
     }
     public void PlayerBecomeGhost(Rigidbody rb, Collider cld)
     {
