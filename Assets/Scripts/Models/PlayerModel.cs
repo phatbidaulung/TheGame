@@ -4,6 +4,7 @@ using Ensign;
 using Ensign.Unity.MVC;
 public class PlayerModel : IDataModel
 {
+    public float timeDelayRotate;
     public float JumpForce {get; set;}
     public float TimeDelay {get; set;}
     public float LimitMapLeft {get; set;}

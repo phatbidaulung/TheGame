@@ -16,8 +16,8 @@ public class PlayerView : View<PlayerController, PlayerModel>
     private void Update()
     {
         this.Controller.RoiXuongDayXaHoi(transform.position);
-        // Move();
-        MoveWithTouch();
+        Move();
+        // MoveWithTouch();
     }
     // private void Move()
     // {
@@ -38,45 +38,8 @@ public class PlayerView : View<PlayerController, PlayerModel>
     //         Movement(EMovement.MoveToLeft);
     //     }
     // }
-    public void Movement(EMovement typeMove)
-    {
-        if(GameManager.Instance.StatusGameIs() != EStatusGame.GameOver && this.Model.InPlane)
-        {
-            switch (typeMove)
-            {
-                case EMovement.MoveToTop:
-                    this.Model.NextPosition = transform.position + new Vector3(1, 0, 0);
-                    LeanTween.moveLocalX(gameObject, this.Model.NextPosition.x, this.Model.Speed);
-                    this.Controller.Jump(gameObject);
-                    RotatePlayer(0);
-                    // GameManager.Instance.IncreaseScore();
-                    break;
-                case EMovement.MoveToBottom:
-                    this.Model.NextPosition = transform.position - new Vector3(1, 0, 0);
-                    LeanTween.moveLocalX(gameObject, this.Model.NextPosition.x, this.Model.Speed);
-                    this.Controller.Jump(gameObject);
-                    RotatePlayer(180);
-                    UIManager.Instance.OpenPopup(EActionUI.PopupStatusRealTime);
-                    break;
-                case EMovement.MoveToLeft:
-                    this.Model.NextPosition = transform.position + new Vector3(0, 0, 1);
-                    LeanTween.moveLocalZ(gameObject, this.Model.NextPosition.z, this.Model.Speed);
-                    this.Controller.Jump(gameObject);
-                    RotatePlayer(-90);
-                    break;
-                case EMovement.MoveToRight:
-                    this.Model.NextPosition = transform.position - new Vector3(0, 0, 1);
-                    LeanTween.moveLocalZ(gameObject, this.Model.NextPosition.z, this.Model.Speed);
-                    this.Controller.Jump(gameObject);
-                    RotatePlayer(90);
-                    break;
-                
-            }
-
-            this.Controller.PreventPlayerTurning(transform.position);
-            SoundManager.Instance.PlaySound(EActionSound.PlayerMove);
-        }
-    }
+    
+    
 
     private void Move()
     {
@@ -96,25 +59,25 @@ public class PlayerView : View<PlayerController, PlayerModel>
                 if(distance.x < -this.Model.swipeRange)
                 {
                     this.Model.stopTouch = true;
-                    Movement(EMovement.MoveToLeft);
+                    this.Controller.Movement(gameObject, EMovement.MoveToLeft);
                 }
                 // Right
                 else if(distance.x > this.Model.swipeRange)
                 {
                     this.Model.stopTouch = true;
-                    Movement(EMovement.MoveToRight);
+                    this.Controller.Movement(gameObject, EMovement.MoveToRight);
                 }
                 // Up
                 else if(distance.y > this.Model.swipeRange)
                 {
                     this.Model.stopTouch = true;
-                    Movement(EMovement.MoveToTop);
+                    this.Controller.Movement(gameObject, EMovement.MoveToTop);
                 }
                 //Down
                 else if(distance.y < -this.Model.swipeRange)
                 {
                     this.Model.stopTouch = true;
-                    Movement(EMovement.MoveToBottom);
+                    this.Controller.Movement(gameObject, EMovement.MoveToBottom);
                 }
 
             }
@@ -128,7 +91,7 @@ public class PlayerView : View<PlayerController, PlayerModel>
             Vector2 distance = this.Model.endTouchPosition - this.Model.startTouchPosition;
             if(Mathf.Abs(distance.x) < this.Model.tapRange && Mathf.Abs(distance.y) < this.Model.tapRange)
             {
-                Movement(EMovement.MoveToTop);
+                this.Controller.Movement(gameObject, EMovement.MoveToTop);
             }
         }
     }
@@ -169,33 +132,28 @@ public class PlayerView : View<PlayerController, PlayerModel>
 					if (swipe.x > 0) {
 						this.Model.SwipedRight = true;
                         Debug.Log("right");
-                        Movement(EMovement.MoveToRight);
+                        this.Controller.Movement(gameObject, EMovement.MoveToRight);
 					}
 					else {
 						this.Model.SwipedLeft = true;
                         Debug.Log("left");
-                        Movement(EMovement.MoveToLeft);
+                        this.Controller.Movement(gameObject, EMovement.MoveToLeft);
 					}
 				}
 				else { // Vertical swipe
 					if (swipe.y > 0) {
 						this.Model.SwipedUp = true;
                         Debug.Log("Up");
-                        Movement(EMovement.MoveToTop);
+                        this.Controller.Movement(gameObject, EMovement.MoveToTop);
 					}
 					else {
 						this.Model.SwipedDown = true;
                         Debug.Log("Down");
-                        Movement(EMovement.MoveToBottom);
+                        this.Controller.Movement(gameObject, EMovement.MoveToBottom);
 					}
 				}
 			}
 		}
-    }
-    private void RotatePlayer(float index)
-    {
-        float timeDelayRotate = 0.2f;
-        LeanTween.rotateY(gameObject, index, timeDelayRotate);
     }
     public void PlayerBecomeGhost()
     {

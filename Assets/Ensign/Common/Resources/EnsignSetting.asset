@@ -55,8 +55,8 @@ MonoBehaviour:
   enableAutoAnalytic: 0
   enableCollectEvent: 0
   enableLogFile: 0
-  timeTrigger: 
-  gitBranchName: 
-  gitCommit: 
+  timeTrigger: 2023/02/18 19:52:07.344.+07:00
+  gitBranchName: feauture/add-new-control
+  gitCommit: ce3874f22859b7a9bbb4d3fbcb41aec15b862b84
   esCodeVersion: 1.0.3-preview.8
   ensignPath: Ensign/Common
