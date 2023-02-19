@@ -13,33 +13,16 @@ public class PlayerView : View<PlayerController, PlayerModel>
     [SerializeField] private Animator _animator;
     [SerializeField] private Collider _playerCollider;
 
+    private void OnEnable()
+    {
+        this.Model.startPosition = this.gameObject.transform.position;
+    }
     private void Update()
     {
         this.Controller.RoiXuongDayXaHoi(transform.position);
         Move();
         // MoveWithTouch();
     }
-    // private void Move()
-    // {
-    //     if(Input.GetKeyDown(KeyCode.W))
-    //     {
-    //         Movement(EMovement.MoveToTop);
-    //     }
-    //     if(Input.GetKeyDown(KeyCode.S))
-    //     {
-    //         Movement(EMovement.MoveToBottom);
-    //     }
-    //     if(Input.GetKeyDown(KeyCode.D))
-    //     {
-    //         Movement(EMovement.MoveToRight);
-    //     }
-    //     if(Input.GetKeyDown(KeyCode.A))
-    //     {
-    //         Movement(EMovement.MoveToLeft);
-    //     }
-    // }
-    
-    
 
     private void Move()
     {
@@ -94,16 +77,7 @@ public class PlayerView : View<PlayerController, PlayerModel>
                 this.Controller.Movement(gameObject, EMovement.MoveToTop);
             }
         }
-    }
-    public void Scale()
-    {
-        float valueScaleChange = 1.7f;
-        float valueScaleDefaut = 2f;
-        float timeChange = 0.1f;
-        LeanTween.scaleY(this.gameObject,valueScaleChange, timeChange);
-        LeanTween.scaleY(this.gameObject, valueScaleDefaut, timeChange).setDelay(timeChange);
-    }
-    
+    } 
     private void MoveWithTouch()
     {
         this.Model.SwipedRight = false;
@@ -163,25 +137,10 @@ public class PlayerView : View<PlayerController, PlayerModel>
     private void OnCollisionEnter(Collision other) {
         if(other.gameObject.tag == "Enemy")
         {
-            GameManager.Instance.GameOver();
+            this.Controller.TakeDamage();
+            if(this.Model.health <= 0)
+                GameManager.Instance.GameOver();
             SoundManager.Instance.PlaySound(EActionSound.PlayerDie);
         }
-        if(other.gameObject.tag == "Plane")
-        {
-            this.Controller.CanMove(true);  
-        }
-    }
-    private void OnCollisionStay(Collision other) {
-        if(other.gameObject.tag == "Plane")
-        {
-            this.Controller.CanMove(true);  
-        }
-    }
-    private void OnCollisionExit(Collision other) 
-    {
-        if(other.gameObject.tag == "Plane")
-        {
-            this.Controller.CanMove(false);  
-        } 
     }
 }

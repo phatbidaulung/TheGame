@@ -6,12 +6,11 @@ public class PlayerModel : IDataModel
 {
     public float timeDelayRotate;
     public float JumpForce {get; set;}
-    public float TimeDelay {get; set;}
-    public float LimitMapLeft {get; set;}
-    public float LimitMapRight {get; set;}
     public float Speed {get; set;}
+    public Vector3 startPosition {get; set;}
     public Vector3 NextPosition {get; set;} 
     public bool InPlane {get; set;}
+    public float health {get; set;}
 
     // value for move player with touch
     

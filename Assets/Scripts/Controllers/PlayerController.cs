@@ -14,10 +14,9 @@ public class PlayerController : Controller<PlayerController, PlayerModel>
         {
             timeDelayRotate  = 0.2f,
             JumpForce           = 2f,
-            TimeDelay           = 0.1f,
-            LimitMapLeft        = 4f,
-            LimitMapRight       = 16f,
+            health              = 3f,
             Speed               = 0.2f,
+            startPosition       = default,
             NextPosition        = default,
             InPlane             = true,
             MAX_SWIPE_TIME      = 0.5f,
@@ -56,28 +55,31 @@ public class PlayerController : Controller<PlayerController, PlayerModel>
             switch (typeMove)
             {
                 case EMovement.MoveToTop:
-                    this.Model.NextPosition = taget.transform.position + new Vector3(1, 0, 0);
+                    this.Model.NextPosition = this.Model.startPosition + new Vector3(1, 0, 0);
                     LeanTween.moveLocalX(taget.gameObject, this.Model.NextPosition.x, this.Model.Speed);
+                    this.Model.startPosition = this.Model.NextPosition;
                     Jump(taget.gameObject);
                     RotatePlayer(taget, 0);
-                    // GameManager.Instance.IncreaseScore();
+                    GameManager.Instance.IncreaseScore();
                     break;
                 case EMovement.MoveToBottom:
-                    this.Model.NextPosition = taget.transform.position - new Vector3(1, 0, 0);
+                    this.Model.NextPosition = this.Model.startPosition - new Vector3(1, 0, 0);
                     LeanTween.moveLocalX(taget.gameObject, this.Model.NextPosition.x, this.Model.Speed);
+                    this.Model.startPosition = this.Model.NextPosition;
                     Jump(taget.gameObject);
                     RotatePlayer(taget, 180);
-                    UIManager.Instance.OpenPopup(EActionUI.PopupStatusRealTime);
                     break;
                 case EMovement.MoveToLeft:
-                    this.Model.NextPosition = taget.transform.position + new Vector3(0, 0, 1);
+                    this.Model.NextPosition = this.Model.startPosition + new Vector3(0, 0, 1);
                     LeanTween.moveLocalZ(taget.gameObject, this.Model.NextPosition.z, this.Model.Speed);
+                    this.Model.startPosition = this.Model.NextPosition;
                     Jump(taget.gameObject);
                     RotatePlayer(taget, -90);
                     break;
                 case EMovement.MoveToRight:
-                    this.Model.NextPosition = taget.transform.position - new Vector3(0, 0, 1);
+                    this.Model.NextPosition = this.Model.startPosition - new Vector3(0, 0, 1);
                     LeanTween.moveLocalZ(taget.gameObject, this.Model.NextPosition.z, this.Model.Speed);
+                    this.Model.startPosition = this.Model.NextPosition;
                     Jump(taget.gameObject);
                     RotatePlayer(taget, 90);
                     break;
@@ -110,5 +112,9 @@ public class PlayerController : Controller<PlayerController, PlayerModel>
         {
             GameManager.Instance.GameOver();
         }
+    }
+    public void TakeDamage()
+    {
+        this.Model.health--;
     }
 }
