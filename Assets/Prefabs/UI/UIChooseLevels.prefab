@@ -732,6 +732,7 @@ MonoBehaviour:
   _indexLevel: 2
   _textLevel: {fileID: 4467953355992304941}
   _lock: {fileID: 3344636856449214341}
+  _uiManager: {fileID: 0}
 --- !u!114 &1124647326698899214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1550,6 +1551,7 @@ MonoBehaviour:
   _indexLevel: 9
   _textLevel: {fileID: 70191408359398692}
   _lock: {fileID: 1122533746288077267}
+  _uiManager: {fileID: 0}
 --- !u!114 &8294043110609093667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2252,6 +2254,7 @@ MonoBehaviour:
   _indexLevel: 8
   _textLevel: {fileID: 509945885037059627}
   _lock: {fileID: 9038019094142565513}
+  _uiManager: {fileID: 0}
 --- !u!114 &7551281328973811650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4066,6 +4069,7 @@ MonoBehaviour:
   _indexLevel: 5
   _textLevel: {fileID: 3097543114107173357}
   _lock: {fileID: 616143736685641267}
+  _uiManager: {fileID: 0}
 --- !u!114 &927621199628967322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4574,6 +4578,7 @@ MonoBehaviour:
   _indexLevel: 12
   _textLevel: {fileID: 1405275898727348907}
   _lock: {fileID: 478970050996209920}
+  _uiManager: {fileID: 0}
 --- !u!114 &2836862020078903670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5172,6 +5177,7 @@ MonoBehaviour:
   _indexLevel: 1
   _textLevel: {fileID: 4036150200416538791}
   _lock: {fileID: 1958945430597516636}
+  _uiManager: {fileID: 0}
 --- !u!114 &5538917890366679804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5878,7 +5884,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -9
   m_TargetDisplay: 0
 --- !u!114 &4036150202020200505
 MonoBehaviour:
@@ -6451,6 +6457,7 @@ MonoBehaviour:
   _indexLevel: 3
   _textLevel: {fileID: 8220016733650851203}
   _lock: {fileID: 3528454278181641504}
+  _uiManager: {fileID: 0}
 --- !u!114 &1324577764700099681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6685,6 +6692,7 @@ MonoBehaviour:
   _indexLevel: 11
   _textLevel: {fileID: 5843275159581547494}
   _lock: {fileID: 696968749252560344}
+  _uiManager: {fileID: 0}
 --- !u!114 &7883574825295030080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6785,6 +6793,7 @@ MonoBehaviour:
   _indexLevel: 10
   _textLevel: {fileID: 1606152314866678784}
   _lock: {fileID: 7990467686173841233}
+  _uiManager: {fileID: 0}
 --- !u!114 &5313952447888999999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7496,6 +7505,7 @@ MonoBehaviour:
   _indexLevel: 7
   _textLevel: {fileID: 2705143422228925952}
   _lock: {fileID: 5224380405120426851}
+  _uiManager: {fileID: 0}
 --- !u!114 &4527526107009618398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8794,6 +8804,7 @@ MonoBehaviour:
   _indexLevel: 6
   _textLevel: {fileID: 107989896257456948}
   _lock: {fileID: 4047064005895230673}
+  _uiManager: {fileID: 0}
 --- !u!114 &6601807208103002109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10098,6 +10109,7 @@ MonoBehaviour:
   _indexLevel: 4
   _textLevel: {fileID: 2422207644238713174}
   _lock: {fileID: 1282321147589916048}
+  _uiManager: {fileID: 0}
 --- !u!114 &5369142646064086548
 MonoBehaviour:
   m_ObjectHideFlags: 0

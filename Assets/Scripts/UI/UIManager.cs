@@ -10,6 +10,7 @@ public class UIManager : UIBase
     [SerializeField] private GameObject _popupSetting;
     [SerializeField] private GameObject _popupStatusGame;
     [SerializeField] private GameObject _popupStatusRealTime;
+    [SerializeField] private GameObject _popupRemoveAd;
     [SerializeField] private GameObject _uiChooseSkins;
     [SerializeField] private GameObject _uiStore;
     [SerializeField] private GameObject _uiChooseLevels;
@@ -49,6 +50,9 @@ public class UIManager : UIBase
             case EActionUI.UIStore:
                 base.OpenPopup(_uiStore);
                 break;
+            case EActionUI.UIRemoveAd:
+                base.OpenPopup(_popupRemoveAd);
+                break;
         }
     }
 
@@ -64,5 +68,6 @@ public enum EActionUI
     PopupStatusRealTime,
     UIChooseSkins,
     UIChooseLevels,
-    UIStore
+    UIStore,
+    UIRemoveAd
 }
