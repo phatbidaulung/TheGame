@@ -21,7 +21,7 @@ public class EnemyController : MonoBehaviour
     }
     private void Move()
     {
-        this.transform.position += transform.forward * GameManager.Instance.SpeedEnemy * Time.fixedDeltaTime;
+        this.transform.position += transform.forward * GameManager.Instance.SpeedEnemy * Time.deltaTime;
     }
     private void OnCollisionEnter(Collision other) 
     {

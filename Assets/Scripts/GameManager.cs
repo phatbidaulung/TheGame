@@ -10,6 +10,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private ELevel _levelMap;
     private EStatusGame _statusGame;
     private float _score;
+    private float _timeDelayAdMob = 1f;
+
     #region Player
     private Vector3 _maxPositionPlayer;
     #endregion
@@ -17,6 +19,7 @@ public class GameManager : Singleton<GameManager>
     #region Enemy
     [HideInInspector] public float SpeedEnemy = 3f;
     #endregion
+
     #region UI
     [SerializeField] private UIManager _uiManager; 
     [SerializeField] private DataManager _dataManager;
@@ -24,6 +27,9 @@ public class GameManager : Singleton<GameManager>
     private void Start() {
         if(_player == null)
             _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerView>();
+
+		if (AdsManager.Instance)
+			AdsManager.Instance.ShowAdmobBanner(false);
     }
     public void IncreaseScore()
     {
@@ -62,11 +68,17 @@ public class GameManager : Singleton<GameManager>
         if(_statusGame != EStatusGame.GameOver)
         {
             _statusGame = EStatusGame.GameOver;
+            _dataManager.SaveData();
             _player.PlayerBecomeGhost();
             _uiManager.OpenPopupStatusGame();
-            _dataManager.SaveData();
             SoundManager.Instance.PlaySound(EActionSound.GameOver);
-            Debug.Log("GameOver ---- GameManager");
+            this.ActionWaitTime(_timeDelayAdMob, () => {
+                GoogleAdMobController.Instance.ShowInterstitial();
+                if (AdsManager.Instance){
+                    // AdsManager.Instance.ShowAdmobBanner(true);
+                    // AdsManager.Instance.ShowNormalAd(EStatusGame.GameOver);
+                    }
+            });
         }
     }
 
@@ -82,7 +94,11 @@ public class GameManager : Singleton<GameManager>
             _uiManager.OpenPopupStatusGame();
             _dataManager.SaveData();
             SoundManager.Instance.PlaySound(EActionSound.WinGame);
-            Debug.Log("You ------ win");
+            this.ActionWaitTime(_timeDelayAdMob, () => {
+                GoogleAdMobController.Instance.ShowRewardedVideo();
+                // if (AdsManager.Instance)
+                    // AdsManager.Instance.ShowAdmobBanner(true);
+            });
         }
     }
 

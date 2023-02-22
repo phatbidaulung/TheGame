@@ -9,7 +9,8 @@ public class UIScore : UIBase
     [SerializeField] private TMP_Text _highScore;
     [SerializeField] private DataManager _dataManager;
     private void OnEnable() {
-        _highScore.text = GetHighScoreFromFile().ToString();
+        if(_highScore != null)
+            _highScore.text = GetHighScoreFromFile().ToString();
     }
     public void ChangeScoreInScreen(string input)
     {

@@ -10,6 +10,7 @@ public class UIMain : UIBase
     [SerializeField] private Button _btnNormal;
     [SerializeField] private Button _btnStore;
     [SerializeField] private Button _btnChosseSkins;
+    [SerializeField] private Button _btnRemoveAd;
 
     [SerializeField] private UIManager _uiManager;
 
@@ -19,6 +20,8 @@ public class UIMain : UIBase
         this._btnStore.onClick.AddListener(ButtonStore);
         this._btnNormal.onClick.AddListener(ButtonNormalMode);
         this._btnEndless.onClick.AddListener(ButtonEndlessMode);
+        if(_btnRemoveAd != null)
+            this._btnRemoveAd.onClick.AddListener(ButtonRemoveAd);
     }
 
     private void ButtonSetting()
@@ -45,5 +48,10 @@ public class UIMain : UIBase
     {
         SoundManager.Instance.PlaySound(EActionSound.Button);
         _uiManager.LoadSceneWithLoadingPopup(_endless);
+    }
+    private void ButtonRemoveAd()
+    {
+        SoundManager.Instance.PlaySound(EActionSound.Button);
+        _uiManager.OpenPopup(EActionUI.UIRemoveAd);
     }
 }
