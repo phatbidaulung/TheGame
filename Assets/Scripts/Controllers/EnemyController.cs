@@ -9,7 +9,7 @@ public class EnemyController : MonoBehaviour
     private void OnEnable() 
     {
         // Recycle enemy when enemy don't "onTrigger" with "RecycleEnemy (gameObject)"
-        this.ActionWaitTime(15f, () =>{
+        this.ActionWaitTime(9f, () =>{
             if(gameObject.activeSelf == true)
                 gameObject.Recycle();
         });

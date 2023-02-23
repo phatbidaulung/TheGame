@@ -28,8 +28,10 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController> {
 
         RequestInterstitial();
         RequestRewardedVideo();
-        if(!IngameData.Instance.IsShowAds)
+        if(!IngameData.Instance.IsShowAds){
             RequestBanner();
+            Debug.Log("hhhhh");
+            }
 
         DontDestroyOnLoad(this.gameObject);
     }
