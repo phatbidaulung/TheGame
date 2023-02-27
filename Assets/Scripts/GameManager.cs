@@ -28,8 +28,11 @@ public class GameManager : Singleton<GameManager>
         if(_player == null)
             _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerView>();
 
-		if (AdsManager.Instance)
-			AdsManager.Instance.ShowAdmobBanner(false);
+		if (AdsManager.Instance){
+			// AdsManager.Instance.ShowAdmobBanner(false);
+            Debug.Log("FFFFF");
+            }
+        Debug.Log(IngameData.Instance.IsShowAds);
     }
     public void IncreaseScore()
     {
@@ -73,7 +76,8 @@ public class GameManager : Singleton<GameManager>
             _uiManager.OpenPopupStatusGame();
             SoundManager.Instance.PlaySound(EActionSound.GameOver);
             this.ActionWaitTime(_timeDelayAdMob, () => {
-                GoogleAdMobController.Instance.ShowInterstitial();
+                if(!IngameData.Instance.IsShowAds)
+                    GoogleAdMobController.Instance.ShowInterstitial();
                 if (AdsManager.Instance){
                     // AdsManager.Instance.ShowAdmobBanner(true);
                     // AdsManager.Instance.ShowNormalAd(EStatusGame.GameOver);
@@ -95,7 +99,8 @@ public class GameManager : Singleton<GameManager>
             _dataManager.SaveData();
             SoundManager.Instance.PlaySound(EActionSound.WinGame);
             this.ActionWaitTime(_timeDelayAdMob, () => {
-                GoogleAdMobController.Instance.ShowRewardedVideo();
+                if(!IngameData.Instance.IsShowAds)
+                    GoogleAdMobController.Instance.ShowRewardedVideo();
                 // if (AdsManager.Instance)
                     // AdsManager.Instance.ShowAdmobBanner(true);
             });

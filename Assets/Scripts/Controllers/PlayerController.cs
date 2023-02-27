@@ -13,9 +13,9 @@ public class PlayerController : Controller<PlayerController, PlayerModel>
         this.ChangeModel(new PlayerModel
         {
             timeDelayRotate  = 0.2f,
-            JumpForce           = 1f,
+            JumpForce           = 0.5f,
             health              = 3f,
-            Speed               = 0.5f,
+            Speed               = 0.2f,
             startPosition       = default,
             NextPosition        = default,
             InPlane             = true,
@@ -83,19 +83,19 @@ public class PlayerController : Controller<PlayerController, PlayerModel>
                     Jump(taget.gameObject);
                     RotatePlayer(taget, 90);
                     break;
-                
+                 
             }
 
-            PreventPlayerTurning(taget.transform.position);
+            // PreventPlayerTurning(taget.transform.position);
             SoundManager.Instance.PlaySound(EActionSound.PlayerMove);
         }
     }
     public void Jump(GameObject taget)
     {
-        LeanTween.moveLocalY(taget, taget.transform.position.y + this.Model.JumpForce, this.Model.Speed / 2);
-        // LeanTween.scale(taget, new Vector3(taget.transform.localScale.x + 0.3f, taget.transform.localScale.y + 0.3f, taget.transform.localScale.z + 0.3f), this.Model.Speed / 2);
-        LeanTween.moveLocalY(taget, taget.transform.position.y, this.Model.Speed / 2).setDelay(this.Model.Speed / 2);
-        // LeanTween.scale(taget, new Vector3(taget.transform.localScale.x, taget.transform.localScale.y, taget.transform.localScale.z), this.Model.Speed / 2).setDelay(this.Model.Speed / 2);
+        LeanTween.moveLocalY(taget, taget.transform.position.y + this.Model.JumpForce, this.Model.Speed / 2).setEase(LeanTweenType.easeOutQuint);
+        // LeanTween.scale(taget, new Vector3(taget.transform.localScale.x, taget.transform.localScale.y - 0.3f, taget.transform.localScale.z), this.Model.Speed / 2).setEase(LeanTweenType.easeOutExpo);
+        LeanTween.moveLocalY(taget, taget.transform.position.y, this.Model.Speed / 2).setDelay(this.Model.Speed / 2).setEase(LeanTweenType.easeInExpo);;
+        // LeanTween.scale(taget, new Vector3(taget.transform.localScale.x, taget.transform.localScale.y, taget.transform.localScale.z), this.Model.Speed / 2).setEase(LeanTweenType.easeInQuint).setDelay(this.Model.Speed / 2);
     }
     private void RotatePlayer(GameObject taget, float indexRoatation)
     {

@@ -15,18 +15,14 @@ public class SpawnEnemy : MonoBehaviour
     }
     private void OnEnable() 
     {
-        SpawnGameobjet();
         _timeRandom = Random.Range(0f, 1f);
+        InvokeRepeating("SpawnGameobjet", 1f, _timeInstantiate + _timeRandom);
     }
     private void SpawnGameobjet()
     {
         if(GameManager.Instance.StatusGameIs() == EStatusGame.Playing)
         {
-            this.ActionWaitTime(_timeInstantiate + _timeRandom, () => {
-                _enemy.Spawn(transform.position, transform.rotation);
-                _timeRandom = Random.Range(0f, 0.5f);
-                SpawnGameobjet();
-            });
+            _enemy.Spawn(transform.position, transform.rotation);
         }
     }
 }
