@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class SpawnEnemy : MonoBehaviour
 {
+    [SerializeField] private EMovement _typeMovement;
+    [SerializeField] private NewEnemyController _enemyController;
     [SerializeField] private GameObject _enemy;
     [SerializeField] private float _timeInstantiate;
     private float _timeRandom;
@@ -12,6 +14,7 @@ public class SpawnEnemy : MonoBehaviour
     private void Awake() 
     {
         _enemy.CreatePool();
+        _enemyController.typeMove = _typeMovement;
     }
     private void OnEnable() 
     {
