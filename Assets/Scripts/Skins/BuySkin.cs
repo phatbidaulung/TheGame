@@ -22,10 +22,10 @@ public class BuySkin : MonoBehaviour
         if((_numberSkin < _skinDB.SkinsCount) && (_numberSkin >= 0))
         {
             Skins _skins = _skinDB.GetSkins(_numberSkin);
-            _nameSkin.text = _skins.SkinName;
-            _skinImage.sprite = _skins.SkinSprite;
+            _nameSkin.text = _skins.skinName;
+            _skinImage.sprite = _skins.skinSprite;
 
-            if(_skins.Buy == true){
+            if(_skins.buy == true){
                 _textStatusButton.text = "Đã sở hữu";
                 _btnBuy.interactable = false;
             } 
@@ -40,7 +40,7 @@ public class BuySkin : MonoBehaviour
         if(_numberSkin <= _skinDB.SkinsCount)
         {
             Skins _skins = _skinDB.GetSkins(_numberSkin);
-            _skins.Buy = true;
+            _skins.buy = true;
             SetUp();
         }
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 using Ensign.Unity.MVC;
 using Ensign.Unity;
@@ -13,6 +14,13 @@ public class PlayerView : View<PlayerController, PlayerModel>
     [SerializeField] private Animator _animator;
     [SerializeField] private Collider _playerCollider;
 
+    private void Awake() 
+    {
+        if(SceneManager.GetActiveScene().name == "Main"){
+            Destroy(GetComponent<PlayerView>());
+            Destroy(_rb);    
+        }
+    }
     private void OnEnable()
     {
         this.Model.startPosition = this.gameObject.transform.position;

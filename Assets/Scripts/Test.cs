@@ -1,85 +1,38 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
-using UnityEngine.SceneManagement;
-using UnityEngine.AI;
 
-using Ensign.Tween;
-
-public class Test : MonoBehaviour 
+using TMPro;
+public class Test : MonoBehaviour
 {
-    
-    private Vector2 startTouchPosition;
-    private Vector2 currentPosition;
-    private Vector2 endTouchPosition;
+    public ScrollRect scrollView;
+    public GameObject centeredObject;
+    public TMP_Text indexSkin;
 
-    private bool stopTouch = false;
-    
-    public Text _text;
-    public float swipeRange;
-    public float tapRange;
-
-    private void Update() {
-        Swipe();
-    }
-
-    private void Swipe()
+    void Update()
     {
-        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-        {
-            startTouchPosition = Input.GetTouch(0).position;
-        }
+        // Get the center point of the scroll view's viewport in world space
+        Vector3 viewportCenterWorld = scrollView.viewport.TransformPoint(scrollView.viewport.rect.center);
 
-        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
-        {
-            currentPosition = Input.GetTouch(0).position;
-            Vector2 distance = currentPosition - startTouchPosition;
+        // Convert the center point to local space of the content
+        Vector3 viewportCenterLocal = scrollView.content.InverseTransformPoint(viewportCenterWorld);
 
-            if(!stopTouch)
+        // Find the closest child GameObject to the center point
+        float closestDistance = Mathf.Infinity;
+        foreach (Transform child in scrollView.content.transform)
+        {
+            float distance = Mathf.Abs(child.transform.localPosition.x - viewportCenterLocal.x);
+            if (distance < closestDistance)
             {
-                if(distance.x < -swipeRange)
-                {
-                    _text.text = "Left";
-                    stopTouch = true;
-                }
-                else if(distance.x > swipeRange)
-                {
-                    _text.text = "Right";
-                    stopTouch = true;
-                }
-                else if(distance.y > swipeRange)
-                {
-                    _text.text = "Up";
-                    stopTouch = true;
-                }
-                else if(distance.y < -swipeRange)
-                {
-                    _text.text = "Down";
-                    stopTouch = true;
-                }
-
+                closestDistance = distance;
+                centeredObject = child.gameObject;
+                indexSkin = child.Find("IndexSkin").gameObject.GetComponent<TMP_Text>();
             }
-        }
-
-        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
-        {
-            stopTouch = false;
-            endTouchPosition = Input.GetTouch(0).position;
-            Vector2 distance = endTouchPosition - startTouchPosition;
-            if(Mathf.Abs(distance.x) < tapRange && Mathf.Abs(distance.y) < tapRange)
-            {
-                _text.text = "Tap";
-                Scale();
-            }
+            Debug.LogWarning($"Name index skin {child.Find("IndexSkin").name} Value skin: {indexSkin.text}");
+            // Debug.LogWarning($"Value 01: {closestDistance} Value 02: {closestDistance}");
         }
     }
-
-    public void Scale()
-    {
-        float valueScaleChange = 1.7f;
-        float valueScaleDefaut = 2f;
-        float timeChange = 0.1f;
-        LeanTween.scaleY(this.gameObject,valueScaleChange, timeChange);
-        LeanTween.scaleY(this.gameObject, valueScaleDefaut, timeChange).setDelay(timeChange);
+    private void LateUpdate() {
+            // scrollView.horizontalNormalizedPosition = 0.1f;
+        
     }
 }
