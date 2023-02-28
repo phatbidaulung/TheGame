@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 using TMPro;
 
+using Ensign.Unity;
 public class UISkins : MonoBehaviour
 {
     [Header("Button")]
@@ -17,9 +18,12 @@ public class UISkins : MonoBehaviour
     [SerializeField] private TMP_Text _indexSkin;
     [SerializeField] private TMP_Text _nameSkin;
 
-    private void Start() 
+    private void OnEnable() 
     {
-        UpdateSkin();
+        Debug.LogWarning("Helooo");
+        this.ActionWaitTime(0.01f, () => {
+            UpdateSkin();
+        });
         _btnSkin.onClick.AddListener(SelectSkin);
     }
     private void UpdateSkin()
