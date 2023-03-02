@@ -42,25 +42,25 @@ public class PlayerView : View<PlayerController, PlayerModel>
                 if(distance.x < -this.Model.swipeRange)
                 {
                     this.Model.stopTouch = true;
-                    this.Controller.Movement(gameObject, EMovement.MoveToLeft);
+                    this.Controller.Movement(gameObject, EMovement.MoveToLeft, _rb);
                 }
                 // Right
                 else if(distance.x > this.Model.swipeRange)
                 {
                     this.Model.stopTouch = true;
-                    this.Controller.Movement(gameObject, EMovement.MoveToRight);
+                    this.Controller.Movement(gameObject, EMovement.MoveToRight, _rb);
                 }
                 // Up
                 else if(distance.y > this.Model.swipeRange)
                 {
                     this.Model.stopTouch = true;
-                    this.Controller.Movement(gameObject, EMovement.MoveToTop);
+                    this.Controller.Movement(gameObject, EMovement.MoveToTop, _rb);
                 }
                 //Down
                 else if(distance.y < -this.Model.swipeRange)
                 {
                     this.Model.stopTouch = true;
-                    this.Controller.Movement(gameObject, EMovement.MoveToBottom);
+                    this.Controller.Movement(gameObject, EMovement.MoveToBottom, _rb);
                 }
 
             }
@@ -74,7 +74,10 @@ public class PlayerView : View<PlayerController, PlayerModel>
             Vector2 distance = this.Model.endTouchPosition - this.Model.startTouchPosition;
             if(Mathf.Abs(distance.x) < this.Model.tapRange && Mathf.Abs(distance.y) < this.Model.tapRange)
             {
-                this.Controller.Movement(gameObject, EMovement.MoveToTop);
+                this.Controller.Movement(gameObject, EMovement.MoveToTop, _rb);
+                    this.ActionWaitTime(this.Model.Speed, () => {
+                        Debug.Log("HHHH");
+                    });
             }
         }
     } 
@@ -106,24 +109,24 @@ public class PlayerView : View<PlayerController, PlayerModel>
 					if (swipe.x > 0) {
 						this.Model.SwipedRight = true;
                         Debug.Log("right");
-                        this.Controller.Movement(gameObject, EMovement.MoveToRight);
+                        this.Controller.Movement(gameObject, EMovement.MoveToRight, _rb);
 					}
 					else {
 						this.Model.SwipedLeft = true;
                         Debug.Log("left");
-                        this.Controller.Movement(gameObject, EMovement.MoveToLeft);
+                        this.Controller.Movement(gameObject, EMovement.MoveToLeft, _rb);
 					}
 				}
 				else { // Vertical swipe
 					if (swipe.y > 0) {
 						this.Model.SwipedUp = true;
                         Debug.Log("Up");
-                        this.Controller.Movement(gameObject, EMovement.MoveToTop);
+                        this.Controller.Movement(gameObject, EMovement.MoveToTop, _rb);
 					}
 					else {
 						this.Model.SwipedDown = true;
                         Debug.Log("Down");
-                        this.Controller.Movement(gameObject, EMovement.MoveToBottom);
+                        this.Controller.Movement(gameObject, EMovement.MoveToBottom, _rb);
 					}
 				}
 			}

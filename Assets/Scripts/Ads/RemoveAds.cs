@@ -20,7 +20,9 @@ public class RemoveAds : UIBase
     public static readonly string codeRemoveAd = "UNICORNSTUDIOGAME";
 
     private void Awake() 
-    {   Debug.Log(IngameData.Instance.IsShowAds);
+    {   
+        if(IngameData.Instance.IsShowAds)
+            _textStatus.text = "Ads removed";
         _popupRemoveAd.transform.localScale = new Vector3(0f, 0f, 0f);
         _background.alpha = 0f;
     }

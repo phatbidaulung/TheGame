@@ -1469,9 +1469,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 891d318b76d167e42818512ef26f43c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 349848181}
-  swipeRange: 50
-  tapRange: 10
+  obstacles:
+    serializedVersion: 2
+    m_Bits: 0
+  logTimer: 0.2
+  logOffset: 0
+  nextPos: {x: 0, y: 0, z: 0}
+  currentWorldPos: {x: 0, y: 0, z: 0}
+  jumpForce: 100
+  speed: 0.05
+  speedRot: 0.05
+  rotationOffset: 90
+  canPlat: 1
+  facingDir: {x: 0, y: 0, z: 0}
+  onPlatform: 0
+  pivotPoint: {fileID: 0}
 --- !u!4 &1093735361
 Transform:
   m_ObjectHideFlags: 0
@@ -2051,7 +2063,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 0.2
@@ -2261,6 +2273,7 @@ GameObject:
   - component: {fileID: 1458462888}
   - component: {fileID: 1458462887}
   - component: {fileID: 1458462886}
+  - component: {fileID: 1458462892}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -2291,7 +2304,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1458462885}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41d1643bf8655954896afd42fc2d524d, type: 3}
   m_Name: 
@@ -2379,6 +2392,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1458462892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458462885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 891d318b76d167e42818512ef26f43c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacles:
+    serializedVersion: 2
+    m_Bits: 0
+  logTimer: 0.2
+  logOffset: 0
+  nextPos: {x: 0, y: 0, z: 0}
+  currentWorldPos: {x: 0, y: 0, z: 0}
+  jumpForce: 100
+  speed: 0.05
+  speedRot: 0.05
+  rotationOffset: 90
+  canPlat: 1
+  facingDir: {x: 0, y: 0, z: 0}
+  onPlatform: 0
+  pivotPoint: {fileID: 0}
 --- !u!1001 &1469796875
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2709,9 +2749,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 891d318b76d167e42818512ef26f43c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 0}
-  swipeRange: 0
-  tapRange: 0
+  obstacles:
+    serializedVersion: 2
+    m_Bits: 0
+  logTimer: 0.2
+  logOffset: 0
+  nextPos: {x: 0, y: 0, z: 0}
+  currentWorldPos: {x: 0, y: 0, z: 0}
+  jumpForce: 100
+  speed: 0.05
+  speedRot: 0.05
+  rotationOffset: 90
+  canPlat: 1
+  facingDir: {x: 0, y: 0, z: 0}
+  onPlatform: 0
+  pivotPoint: {fileID: 0}
 --- !u!195 &1881098299
 NavMeshAgent:
   m_ObjectHideFlags: 0

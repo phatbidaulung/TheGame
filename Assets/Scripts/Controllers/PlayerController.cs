@@ -48,7 +48,8 @@ public class PlayerController : Controller<PlayerController, PlayerModel>
             GameManager.Instance.GameOver();
         }
     }
-    public void Movement(GameObject taget, EMovement typeMove)
+    bool finishMove;
+    public void Movement(GameObject taget, EMovement typeMove, Rigidbody rb)
     {
         if(GameManager.Instance.StatusGameIs() != EStatusGame.GameOver && this.Model.InPlane)
         {
@@ -56,31 +57,31 @@ public class PlayerController : Controller<PlayerController, PlayerModel>
             {
                 case EMovement.MoveToTop:
                     this.Model.NextPosition = this.Model.startPosition + new Vector3(1, 0, 0);
-                    LeanTween.moveLocalX(taget.gameObject, this.Model.NextPosition.x, this.Model.Speed);
+                    LeanTween.moveLocalX(taget.gameObject, this.Model.NextPosition.x, this.Model.Speed).setOnComplete(()=>{ Debug.Log("HUHUHUHUUH"); });
                     this.Model.startPosition = this.Model.NextPosition;
-                    Jump(taget.gameObject);
+                    Jump(rb);
                     RotatePlayer(taget, 0);
-                    GameManager.Instance.IncreaseScore();
+                    // GameManager.Instance.IncreaseScore();
                     break;
                 case EMovement.MoveToBottom:
                     this.Model.NextPosition = this.Model.startPosition - new Vector3(1, 0, 0);
                     LeanTween.moveLocalX(taget.gameObject, this.Model.NextPosition.x, this.Model.Speed);
                     this.Model.startPosition = this.Model.NextPosition;
-                    Jump(taget.gameObject);
+                    Jump(rb);
                     RotatePlayer(taget, 180);
                     break;
                 case EMovement.MoveToLeft:
                     this.Model.NextPosition = this.Model.startPosition + new Vector3(0, 0, 1);
                     LeanTween.moveLocalZ(taget.gameObject, this.Model.NextPosition.z, this.Model.Speed);
                     this.Model.startPosition = this.Model.NextPosition;
-                    Jump(taget.gameObject);
+                    Jump(rb);
                     RotatePlayer(taget, -90);
                     break;
                 case EMovement.MoveToRight:
                     this.Model.NextPosition = this.Model.startPosition - new Vector3(0, 0, 1);
                     LeanTween.moveLocalZ(taget.gameObject, this.Model.NextPosition.z, this.Model.Speed);
                     this.Model.startPosition = this.Model.NextPosition;
-                    Jump(taget.gameObject);
+                    Jump(rb);
                     RotatePlayer(taget, 90);
                     break;
                  
@@ -90,11 +91,12 @@ public class PlayerController : Controller<PlayerController, PlayerModel>
             SoundManager.Instance.PlaySound(EActionSound.PlayerMove);
         }
     }
-    public void Jump(GameObject taget)
+    public void Jump(Rigidbody taget)
     {
-        LeanTween.moveLocalY(taget, taget.transform.position.y + this.Model.JumpForce, this.Model.Speed / 2).setEase(LeanTweenType.easeOutQuint);
+        taget.AddForce(new Vector3(0f, 100f, 0f));
+        // LeanTween.moveLocalY(taget, taget.transform.position.y + this.Model.JumpForce, this.Model.Speed / 2).setEase(LeanTweenType.easeOutQuint);
         // LeanTween.scale(taget, new Vector3(taget.transform.localScale.x, taget.transform.localScale.y - 0.3f, taget.transform.localScale.z), this.Model.Speed / 2).setEase(LeanTweenType.easeOutExpo);
-        LeanTween.moveLocalY(taget, taget.transform.position.y, this.Model.Speed / 2).setDelay(this.Model.Speed / 2).setEase(LeanTweenType.easeInExpo);;
+        // LeanTween.moveLocalY(taget, taget.transform.position.y, this.Model.Speed / 2).setDelay(this.Model.Speed / 2).setEase(LeanTweenType.easeInExpo);;
         // LeanTween.scale(taget, new Vector3(taget.transform.localScale.x, taget.transform.localScale.y, taget.transform.localScale.z), this.Model.Speed / 2).setEase(LeanTweenType.easeInQuint).setDelay(this.Model.Speed / 2);
     }
     private void RotatePlayer(GameObject taget, float indexRoatation)
