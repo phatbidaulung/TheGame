@@ -26,125 +26,159 @@ public class Test : MonoBehaviour {
 	public bool onPlatform;
 	public GameObject pivotPoint;
 
+	public Animator animator;
+	public bool onPlane;
+	public bool repeat;
+	public Vector3 next;
+	public Collider col;
 
 
-	Rigidbody rb;
+	public Rigidbody rb;
 	// Use this for initialization
 
 
 	void Start () {
 		currentWorldPos = transform.position;
-		rb = GetComponent<Rigidbody> ();
+		// rb = GetComponent<Rigidbody> ();
 		facingDir = Vector3.right;
+		next = transform.position;
 	}
 
 
-
+	private void Update() {
+		if(Input.GetKeyDown(KeyCode.Space))
+		{
+			next += new Vector3(2f, 0f, 0f);
+			Debug.LogWarning(next);
+			rb.AddForce(new Vector3(0f, jumpForce, 0f));
+				animator.SetTrigger("Jump");
+		}
+			transform.position = Vector3.MoveTowards(transform.position, new Vector3(next.x , transform.position.y, next.z), speed);
+			if((transform.position.x != next.x || transform.position.z != next.z))
+			{
+				repeat = false;
+				Debug.LogWarning($"Jump {jumpForce}");
+			}
+			// transform.position = Vector3.MoveTowards (transform.position, new Vector3 (currentWorldPos.x + nextPos.x, transform.position.y, currentWorldPos.z + nextPos.z), speed*Time.deltaTime);
+	
+	}
 
 	
-	// Update is called once per frame
-	void Update () {
+	// // Update is called once per frame
+	// void Update () {
 
 
 
-		// if (GameManager.instance.dead)
-		// 	return;
+	// 	// if (GameManager.instance.dead)
+	// 	// 	return;
 	
-		transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation (Quaternion.Euler(0,rotationOffset,0)*facingDir), speedRot*Time.deltaTime);
+	// 	transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation (Quaternion.Euler(0,rotationOffset,0)*facingDir), speedRot*Time.deltaTime);
 
 
 
-		if ( transform.position != new Vector3 (currentWorldPos.x + nextPos.x, transform.position.y, currentWorldPos.z + nextPos.z)) {
+	// 	if ( transform.position != new Vector3 (currentWorldPos.x + nextPos.x, transform.position.y, currentWorldPos.z + nextPos.z)) {
 			
-			transform.position = Vector3.MoveTowards (transform.position, new Vector3 (currentWorldPos.x + nextPos.x, transform.position.y, currentWorldPos.z + nextPos.z), speed*Time.deltaTime);
+	// 		transform.position = Vector3.MoveTowards (transform.position, new Vector3 (currentWorldPos.x + nextPos.x, transform.position.y, currentWorldPos.z + nextPos.z), speed*Time.deltaTime);
 
 		
 
 
-		}
-		else {
+	// 	}
+	// 	else {
 
-			/*if (onPlatform && transform.position.x == currentWorldPos.x) {
-				transform.position = pivotPoint.transform.position;
-				Debug.Log ("Working");
-			}*/
+	// 		/*if (onPlatform && transform.position.x == currentWorldPos.x) {
+	// 			transform.position = pivotPoint.transform.position;
+	// 			Debug.Log ("Working");
+	// 		}*/
 
-			//resets position
-			nextPos = Vector3.zero;
+	// 		//resets position
+	// 		nextPos = Vector3.zero;
 
-			if (Input.GetAxisRaw ("Horizontal") != 0) {
-				nextPos.z = -Input.GetAxisRaw ("Horizontal");
+	// 		if (Input.GetAxisRaw ("Horizontal") != 0) {
+	// 			nextPos.z = -Input.GetAxisRaw ("Horizontal");
 
-			} else if (Input.GetAxisRaw ("Vertical") != 0) {
-				nextPos.x = Input.GetAxisRaw ("Vertical");
-				//THIS SHOULD STAY M8!
-
-
-				/*
-				if(onPlatform)
-					StartCoroutine(LogTime());
-				onPlatform=false;*/
+	// 		} else if (Input.GetAxisRaw ("Vertical") != 0) {
+	// 			nextPos.x = Input.GetAxisRaw ("Vertical");
+	// 			//THIS SHOULD STAY M8!
 
 
-				//logOffset is zero when it gets out of the log
-				logOffset = 0;
-				onPlatform=false;
-			}
-
-			//sets curposition
-			currentWorldPos = transform.position;
+	// 			/*
+	// 			if(onPlatform)
+	// 				StartCoroutine(LogTime());
+	// 			onPlatform=false;*/
 
 
+	// 			//logOffset is zero when it gets out of the log
+	// 			logOffset = 0;
+	// 			onPlatform=false;
+	// 		}
+
+	// 		//sets curposition
+	// 		currentWorldPos = transform.position;
 
 
-			//COLLISION AND MOVEMENT  if it moved
-			if(nextPos.x!=0 || nextPos.z!=0)
-			{
+
+
+	// 		//COLLISION AND MOVEMENT  if it moved
+	// 		if(nextPos.x!=0 || nextPos.z!=0)
+	// 		{
 				
-				facingDir = nextPos;
+	// 			facingDir = nextPos;
 
 
-				RaycastHit hit;
-				Physics.Raycast (transform.position, nextPos, out hit, 1,obstacles);
+	// 			RaycastHit hit;
+	// 			Physics.Raycast (transform.position, nextPos, out hit, 1,obstacles);
 
-				//NO OBJECT IN FRONT
-				if (hit.collider == null) {
+	// 			//NO OBJECT IN FRONT
+	// 			if (hit.collider == null) {
 
-						rb.AddForce (Vector3.up * jumpForce, ForceMode.Acceleration);
+	// 					rb.AddForce (Vector3.up * jumpForce, ForceMode.Acceleration);
 				
 
-					//if is on platform, changes offset within log according to movement
-					if (onPlatform) {
-						OnPlatformStuff ();
+	// 				//if is on platform, changes offset within log according to movement
+	// 				if (onPlatform) {
+	// 					OnPlatformStuff ();
 
-					}
+	// 				}
 
 
-				} 
-				else{ //if it hits something then it shoudnt move
+	// 			} 
+	// 			else{ //if it hits something then it shoudnt move
 
-					nextPos = Vector3.zero;
+	// 				nextPos = Vector3.zero;
 
-				}		
+	// 			}		
+	// 	}
+
+	// 		//if on platform set the current world pos to this
+	// 		if (onPlatform) {
+	// 			currentWorldPos = pivotPoint.transform.position + Vector3.forward*logOffset;
+	// 		} else {
+	// 			//if not on platform then normalize it
+
+
+	// 			currentWorldPos.x = Mathf.Round (currentWorldPos.x);
+	// 			currentWorldPos.z = Mathf.Round (currentWorldPos.z);
+	// 		}
+
+
+	// 	}
+
+
+	// }
+	private void OnCollisionEnter(Collision other) {
+		if(other.gameObject.tag == "Plane"){
+			onPlane = true;
+			repeat = true;
 		}
-
-			//if on platform set the current world pos to this
-			if (onPlatform) {
-				currentWorldPos = pivotPoint.transform.position + Vector3.forward*logOffset;
-			} else {
-				//if not on platform then normalize it
-
-
-				currentWorldPos.x = Mathf.Round (currentWorldPos.x);
-				currentWorldPos.z = Mathf.Round (currentWorldPos.z);
-			}
-
-
-		}
-
-
 	}
 
+	private void OnCollisionExit(Collision other) {
+		
+		if(other.gameObject.tag == "Plane"){
+			onPlane = false;
+		}
+	}
 
 	IEnumerator LogTime()
 	{

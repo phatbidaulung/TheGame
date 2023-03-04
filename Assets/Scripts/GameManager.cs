@@ -4,10 +4,16 @@ using Ensign.Unity;
 
 public class GameManager : Singleton<GameManager>
 {
-    [SerializeField] private PlayerView _player;
-    [SerializeField] private RenderMap _renderMap;
+    [Header("Information of the map")]
     [SerializeField] private ETypeMap _typeMap;
     [SerializeField] private ELevel _levelMap;
+    
+    [Header("Script table object")]
+    [SerializeField] private PlayerView _player;
+    [SerializeField] private RenderMap _renderMap;
+    [SerializeField] private UIManager _uiManager; 
+    [SerializeField] private DataManager _dataManager;
+
     private EStatusGame _statusGame;
     private float _score;
     private float _timeDelayAdMob = 1f;
@@ -20,19 +26,9 @@ public class GameManager : Singleton<GameManager>
     [HideInInspector] public float SpeedEnemy = 3f;
     #endregion
 
-    #region UI
-    [SerializeField] private UIManager _uiManager; 
-    [SerializeField] private DataManager _dataManager;
-    #endregion
     private void Start() {
         if(_player == null)
             _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerView>();
-
-		if (AdsManager.Instance){
-			// AdsManager.Instance.ShowAdmobBanner(false);
-            Debug.Log("FFFFF");
-            }
-        Debug.Log(IngameData.Instance.IsShowAds);
     }
     public void IncreaseScore()
     {
@@ -62,7 +58,6 @@ public class GameManager : Singleton<GameManager>
         {        
             _renderMap.RecycleMap();
             _renderMap.CreateNewMap();
-            Debug.Log("hhh");
         }
     }
 
@@ -78,10 +73,6 @@ public class GameManager : Singleton<GameManager>
             this.ActionWaitTime(_timeDelayAdMob, () => {
                 if(!IngameData.Instance.IsShowAds)
                     GoogleAdMobController.Instance.ShowInterstitial();
-                if (AdsManager.Instance){
-                    // AdsManager.Instance.ShowAdmobBanner(true);
-                    // AdsManager.Instance.ShowNormalAd(EStatusGame.GameOver);
-                    }
             });
         }
     }
@@ -101,8 +92,6 @@ public class GameManager : Singleton<GameManager>
             this.ActionWaitTime(_timeDelayAdMob, () => {
                 if(!IngameData.Instance.IsShowAds)
                     GoogleAdMobController.Instance.ShowRewardedVideo();
-                // if (AdsManager.Instance)
-                    // AdsManager.Instance.ShowAdmobBanner(true);
             });
         }
     }
@@ -125,11 +114,11 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public Vector3 MaxPositionPlayer() => _maxPositionPlayer;
     public float Score() => _score;
-    public ETypeMap TypeMapInThisSceneIs() => _typeMap;
-    public EStatusGame StatusGameIs() => _statusGame;
     public ELevel LevelMapIs() => _levelMap;
+    public EStatusGame StatusGameIs() => _statusGame;
+    public ETypeMap TypeMapInThisSceneIs() => _typeMap;
+    public Vector3 MaxPositionPlayer() => _maxPositionPlayer;
 }
 public enum ETypeMap
 {

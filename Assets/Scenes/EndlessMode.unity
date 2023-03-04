@@ -799,13 +799,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53bb911f5f360aa4d9de4549a4ddf3b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
-  _renderMap: {fileID: 2032102278}
   _typeMap: 1
   _levelMap: 0
-  SpeedEnemy: 3
+  _player: {fileID: 0}
+  _renderMap: {fileID: 2032102278}
   _uiManager: {fileID: 1396976403}
   _dataManager: {fileID: 1706266008}
+  SpeedEnemy: 3
 --- !u!4 &380470942
 Transform:
   m_ObjectHideFlags: 0
@@ -1170,6 +1170,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf859b50c114994459e07ac5cecd873b, type: 3}
+--- !u!1 &838045894 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3450577434825853810, guid: cf859b50c114994459e07ac5cecd873b, type: 3}
+  m_PrefabInstance: {fileID: 787810558}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &841840658 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2686930901844686987, guid: 43323941ac95d5e44b09128bec316a99, type: 3}
@@ -2086,12 +2091,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _typeMap: 1
   _maps:
-  - {fileID: 5449475026655872068, guid: 730bacded9ca5d34786ed580dbd8c1e7, type: 3}
-  - {fileID: 6539742706054509064, guid: f663012d12c2e7342958fe833e0f8d22, type: 3}
-  - {fileID: 1803495481672542179, guid: 3a1754ab4454a1c4b9223631bddc92cd, type: 3}
-  - {fileID: 892860378949273949, guid: 564cb47f2c45af647b66d85ce5d23394, type: 3}
-  - {fileID: 724691209662592137, guid: e5307d018ce74544ebcfabaa5eafb20f, type: 3}
-  - {fileID: 9089978677036666929, guid: 0bcb5a8e612a9f446880e65300c6f9e0, type: 3}
   - {fileID: 8995732822061166786, guid: 16c4cecf4779be043b59e7708de4f865, type: 3}
   - {fileID: 9040693838653314723, guid: f6091d2c52977a24e88f219c29335313, type: 3}
   - {fileID: 3628401382220290588, guid: 3e2cc6fd61c8a044fb8398e96f106240, type: 3}
@@ -2099,7 +2098,7 @@ MonoBehaviour:
   - {fileID: 5358315320338069754, guid: 8fe7db858fe660a4a8a2e5b60e927366, type: 3}
   - {fileID: 6780515246856312166, guid: 9e2f84a3589abfe4eb611350fd23bd75, type: 3}
   _mapsCreated:
-  - {fileID: 0}
+  - {fileID: 838045894}
   _numberOfModuleMap: 4
 --- !u!4 &2032102279
 Transform:

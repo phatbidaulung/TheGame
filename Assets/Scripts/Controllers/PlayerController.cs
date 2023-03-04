@@ -61,7 +61,7 @@ public class PlayerController : Controller<PlayerController, PlayerModel>
                     this.Model.startPosition = this.Model.NextPosition;
                     Jump(rb);
                     RotatePlayer(taget, 0);
-                    // GameManager.Instance.IncreaseScore();
+                    GameManager.Instance.IncreaseScore();
                     break;
                 case EMovement.MoveToBottom:
                     this.Model.NextPosition = this.Model.startPosition - new Vector3(1, 0, 0);
@@ -87,7 +87,7 @@ public class PlayerController : Controller<PlayerController, PlayerModel>
                  
             }
 
-            // PreventPlayerTurning(taget.transform.position);
+            PreventPlayerTurning(taget.transform.position);
             SoundManager.Instance.PlaySound(EActionSound.PlayerMove);
         }
     }
