@@ -135,8 +135,8 @@ GameObject:
   - component: {fileID: 22547463}
   - component: {fileID: 22547462}
   - component: {fileID: 22547461}
-  - component: {fileID: 22547460}
   - component: {fileID: 22547465}
+  - component: {fileID: 22547460}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -159,7 +159,7 @@ MonoBehaviour:
   _animatorPlayer: {fileID: 898433673}
   _animationPlayer: {fileID: 0}
   _speed: 0.2
-  delay: 0.1
+  delay: 0.15
 --- !u!65 &22547461
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -869,13 +869,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 898433671}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.008726558, z: 0, w: 0.999962}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22547464}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 1, z: 0}
 --- !u!95 &898433673
 Animator:
   serializedVersion: 3
@@ -1179,12 +1179,12 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 0.2
-    m_Bias: 0.05
-    m_NormalBias: 0.4
+    m_Strength: 0.983
+    m_Bias: 0.21
+    m_NormalBias: 0
     m_NearPlane: 0.2
     m_CullingMatrixOverride:
       e00: 1
