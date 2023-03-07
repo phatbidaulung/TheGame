@@ -9,6 +9,8 @@ public class PlayerModel : IDataModel
     public float timeDelayAnimation;
     public Vector3 nextPosition;
     public Quaternion nextRotation;
+    public RaycastHit hit; 	
+    public LayerMask obstacles;
 
     // Value touch screen
     public Vector2 startTouchPosition;

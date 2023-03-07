@@ -20,7 +20,6 @@ public class UISkins : MonoBehaviour
 
     private void OnEnable() 
     {
-        Debug.LogWarning("Helooo");
         this.ActionWaitTime(0.01f, () => {
             UpdateSkin();
         });
@@ -40,6 +39,5 @@ public class UISkins : MonoBehaviour
     private void SelectSkin()
     {
         PlayerPrefs.SetInt("selectSkin", Int32.Parse(_indexSkin.text));
-        Debug.LogWarning($"Index skin is: { PlayerPrefs.GetInt("selectSkin")}");
     }
 }

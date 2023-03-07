@@ -50,9 +50,6 @@ public class UIChooseSkin : UIBase
         CreateListSkin();
         ChangeAlpha(_choosseSkin, 1f, _timeDelayTurnOffObject);
     }
-    private void Update() {
-        // GetAndSetObjectInCenterScreen();
-    }
     private void CreateListSkin()
     {
         for(int i=1; i < _skinDB.SkinsCount; i++)
@@ -95,7 +92,7 @@ public class UIChooseSkin : UIBase
             {
                 closestDistance = distance;
                 _centeredObject = child.Find("3DObject").gameObject;
-                _centeredObject.transform.localScale = defautVtc + scaleTo;
+                // _centeredObject.transform.localScale = defautVtc + scaleTo;
                 _valueSkin = child.Find("IndexSkin").gameObject.GetComponent<TMP_Text>();
             }
         }

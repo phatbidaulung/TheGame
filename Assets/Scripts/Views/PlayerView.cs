@@ -9,6 +9,8 @@ using Ensign.Tween;
 public class PlayerView : View<PlayerController, PlayerModel>
 {
     
+	public LayerMask obstacles;
+    
     [Space, Header("Player")]
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private Animator _animator;
@@ -17,8 +19,9 @@ public class PlayerView : View<PlayerController, PlayerModel>
     private void Awake() 
     {
         if(SceneManager.GetActiveScene().name == "Main"){
-            Destroy(GetComponent<PlayerView>());
             Destroy(_rb);    
+            Destroy(_animator);
+            Destroy(GetComponent<PlayerView>());
         }
     }
     private void OnEnable()
@@ -32,8 +35,16 @@ public class PlayerView : View<PlayerController, PlayerModel>
         // Move();
         MoveWithKey();
 
+		RaycastHit hit;
+		// Physics.Raycast (transform.position, this.Model.nextPosition, out hit, 1,obstacles);
+
         
+		// if (hit.collider == null) 
+        // {
+            // Debug.LogWarning("No object");
+        // }
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(this.Model.nextPosition.x , transform.position.y, this.Model.nextPosition.z), this.Model.speedMovement);
+        
         transform.rotation = Quaternion.RotateTowards(transform.rotation, this.Model.nextRotation, this.Model.speedRotation);
     }
 
@@ -57,7 +68,9 @@ public class PlayerView : View<PlayerController, PlayerModel>
                     this.Model.stopTouch = true;
                     this.Controller.PlayEffect(_animator);
                     this.ActionWaitTime(this.Model.timeDelayAnimation, () => {
-                        this.Controller.Movement(EMovement.MoveToLeft);
+                        Physics.Raycast (transform.position, transform.position += new Vector3(0f, 0f, 1f), out this.Model.hit, 1,obstacles);
+                        if (this.Model.hit.collider != null) 
+                            this.Controller.Movement(EMovement.MoveToLeft);
                     });
                 }
                 // Right
@@ -110,28 +123,36 @@ public class PlayerView : View<PlayerController, PlayerModel>
         if(Input.GetKeyDown(KeyCode.W)){
             this.Controller.PlayEffect(_animator);
             this.ActionWaitTime(this.Model.timeDelayAnimation, () => {
-                this.Controller.Movement(EMovement.MoveToTop);   
+                Physics.Raycast (transform.position, new Vector3(1f, 0f, 0f), out this.Model.hit, 1,obstacles);
+                if (this.Model.hit.collider == null) 
+                    this.Controller.Movement(EMovement.MoveToTop);   
             });
             return;
         }
         if(Input.GetKeyDown(KeyCode.S)){
             this.Controller.PlayEffect(_animator);
             this.ActionWaitTime(this.Model.timeDelayAnimation, () => {
-                this.Controller.Movement(EMovement.MoveToBottom); 
+                Physics.Raycast (transform.position, new Vector3(-1f, 0f, 0f), out this.Model.hit, 1,obstacles);
+                if (this.Model.hit.collider == null) 
+                    this.Controller.Movement(EMovement.MoveToBottom); 
             });
             return;
         }
         if(Input.GetKeyDown(KeyCode.A)){
             this.Controller.PlayEffect(_animator);
             this.ActionWaitTime(this.Model.timeDelayAnimation, () => {
-                this.Controller.Movement(EMovement.MoveToLeft); 
+                Physics.Raycast (transform.position, new Vector3(0f, 0f, 1f), out this.Model.hit, 1,obstacles);
+                if (this.Model.hit.collider == null) 
+                    this.Controller.Movement(EMovement.MoveToLeft); 
             });
             return;
         }
         if(Input.GetKeyDown(KeyCode.D)){
             this.Controller.PlayEffect(_animator);
             this.ActionWaitTime(this.Model.timeDelayAnimation, () => {
-                this.Controller.Movement(EMovement.MoveToRight); 
+                Physics.Raycast (transform.position, new Vector3(0f, 0f, -1f), out this.Model.hit, 1,obstacles);
+                if (this.Model.hit.collider == null) 
+                    this.Controller.Movement(EMovement.MoveToRight); 
             });
             return;
         }
