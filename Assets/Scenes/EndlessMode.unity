@@ -1134,7 +1134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5472265825585427134, guid: cf859b50c114994459e07ac5cecd873b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 5472265825585427134, guid: cf859b50c114994459e07ac5cecd873b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1852,7 +1852,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 0
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
