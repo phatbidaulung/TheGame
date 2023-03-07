@@ -12,22 +12,14 @@ public class PlayerController : Controller<PlayerController, PlayerModel>
         base.Init();
         this.ChangeModel(new PlayerModel
         {
-            timeDelayRotate  = 0.2f,
-            JumpForce           = 0.5f,
-            health              = 3f,
-            Speed               = 0.2f,
-            startPosition       = default,
-            NextPosition        = default,
-            InPlane             = true,
-            MAX_SWIPE_TIME      = 0.5f,
-            MIN_SWIPE_DISTANCE  = 0.17f,
-            SwipedRight         = false,
-            SwipedLeft          = false,
-            SwipedDown          = false,
-            SwipedUp            = false,
-            StartPos            = default,
-            StartTime           = 0f,
+            // Value movement
+            nextPosition        = default,
+            nextRotation        = default,
+            speedMovement       = 0.2f,
+            speedRotation       = 20f,
+            timeDelayAnimation  = 0.15f,
 
+            // Value touch screen
             startTouchPosition = default,
             currentPosition = default,
             endTouchPosition = default,
@@ -35,10 +27,6 @@ public class PlayerController : Controller<PlayerController, PlayerModel>
             swipeRange = 50f,
             tapRange = 10
         });
-    }
-    public void CanMove(bool input)
-    {
-        this.Model.InPlane = input;
     }
     public void PreventPlayerTurning(Vector3 index)
     {
@@ -48,58 +36,36 @@ public class PlayerController : Controller<PlayerController, PlayerModel>
             GameManager.Instance.GameOver();
         }
     }
-    public void Movement(GameObject taget, EMovement typeMove)
+    public void Movement(EMovement typeMove)
     {
-        if(GameManager.Instance.StatusGameIs() != EStatusGame.GameOver && this.Model.InPlane)
+        if(GameManager.Instance.StatusGameIs() != EStatusGame.GameOver)
         {
             switch (typeMove)
             {
                 case EMovement.MoveToTop:
-                    this.Model.NextPosition = this.Model.startPosition + new Vector3(1, 0, 0);
-                    LeanTween.moveLocalX(taget.gameObject, this.Model.NextPosition.x, this.Model.Speed);
-                    this.Model.startPosition = this.Model.NextPosition;
-                    Jump(taget.gameObject);
-                    RotatePlayer(taget, 0);
+                    this.Model.nextPosition += new Vector3(1f, 0f, 0f);
+                    this.Model.nextRotation = Quaternion.Euler(0f, 0f, 0f);
                     GameManager.Instance.IncreaseScore();
-                    break;
+                    return;
                 case EMovement.MoveToBottom:
-                    this.Model.NextPosition = this.Model.startPosition - new Vector3(1, 0, 0);
-                    LeanTween.moveLocalX(taget.gameObject, this.Model.NextPosition.x, this.Model.Speed);
-                    this.Model.startPosition = this.Model.NextPosition;
-                    Jump(taget.gameObject);
-                    RotatePlayer(taget, 180);
-                    break;
+                    this.Model.nextPosition -= new Vector3(1f, 0f, 0f);
+                    this.Model.nextRotation = Quaternion.Euler(0f, 180f, 0f);
+                    return;
                 case EMovement.MoveToLeft:
-                    this.Model.NextPosition = this.Model.startPosition + new Vector3(0, 0, 1);
-                    LeanTween.moveLocalZ(taget.gameObject, this.Model.NextPosition.z, this.Model.Speed);
-                    this.Model.startPosition = this.Model.NextPosition;
-                    Jump(taget.gameObject);
-                    RotatePlayer(taget, -90);
-                    break;
+                    this.Model.nextPosition += new Vector3(0f, 0f, 1f);
+                    this.Model.nextRotation = Quaternion.Euler(0f, -90f, 0f);
+                    return;
                 case EMovement.MoveToRight:
-                    this.Model.NextPosition = this.Model.startPosition - new Vector3(0, 0, 1);
-                    LeanTween.moveLocalZ(taget.gameObject, this.Model.NextPosition.z, this.Model.Speed);
-                    this.Model.startPosition = this.Model.NextPosition;
-                    Jump(taget.gameObject);
-                    RotatePlayer(taget, 90);
-                    break;
-                 
+                    this.Model.nextPosition -= new Vector3(0f, 0f, 1f);
+                    this.Model.nextRotation = Quaternion.Euler(0f, 90f, 0f);
+                    return;
             }
-
-            // PreventPlayerTurning(taget.transform.position);
-            SoundManager.Instance.PlaySound(EActionSound.PlayerMove);
         }
     }
-    public void Jump(GameObject taget)
+    public void PlayEffect(Animator animator)
     {
-        LeanTween.moveLocalY(taget, taget.transform.position.y + this.Model.JumpForce, this.Model.Speed / 2).setEase(LeanTweenType.easeOutQuint);
-        // LeanTween.scale(taget, new Vector3(taget.transform.localScale.x, taget.transform.localScale.y - 0.3f, taget.transform.localScale.z), this.Model.Speed / 2).setEase(LeanTweenType.easeOutExpo);
-        LeanTween.moveLocalY(taget, taget.transform.position.y, this.Model.Speed / 2).setDelay(this.Model.Speed / 2).setEase(LeanTweenType.easeInExpo);;
-        // LeanTween.scale(taget, new Vector3(taget.transform.localScale.x, taget.transform.localScale.y, taget.transform.localScale.z), this.Model.Speed / 2).setEase(LeanTweenType.easeInQuint).setDelay(this.Model.Speed / 2);
-    }
-    private void RotatePlayer(GameObject taget, float indexRoatation)
-    {
-        LeanTween.rotateY(taget, indexRoatation, this.Model.timeDelayRotate);
+        animator.SetTrigger("Jump");
+        SoundManager.Instance.PlaySound(EActionSound.PlayerMove);
     }
     public void PlayerBecomeGhost(Rigidbody rb, Collider cld)
     {
@@ -112,9 +78,5 @@ public class PlayerController : Controller<PlayerController, PlayerModel>
         {
             GameManager.Instance.GameOver();
         }
-    }
-    public void TakeDamage()
-    {
-        this.Model.health--;
     }
 }

@@ -1,32 +1,16 @@
 using UnityEngine;
 
 using Ensign;
-using Ensign.Unity.MVC;
 public class PlayerModel : IDataModel
 {
-    public float timeDelayRotate;
-    public float JumpForce {get; set;}
-    public float Speed {get; set;}
-    public Vector3 startPosition {get; set;}
-    public Vector3 NextPosition {get; set;} 
-    public bool InPlane {get; set;}
-    public float health {get; set;}
+    // Value movement
+    public float speedMovement;
+    public float speedRotation;
+    public float timeDelayAnimation;
+    public Vector3 nextPosition;
+    public Quaternion nextRotation;
 
-    // value for move player with touch
-    
-	public float MAX_SWIPE_TIME = 0.5f; 
-	
-	// Factor of the screen width that we consider a swipe
-	// 0.17 works well for portrait mode 16:9 phone
-	public float MIN_SWIPE_DISTANCE = 0.17f;
-	public bool SwipedRight = false;
-	public bool SwipedLeft = false;
-	public bool SwipedUp = false;
-	public bool SwipedDown = false;
-	public Vector2 StartPos;
-	public float StartTime;
-
-    //
+    // Value touch screen
     public Vector2 startTouchPosition;
     public Vector2 currentPosition;
     public Vector2 endTouchPosition;

@@ -11,6 +11,6 @@ public class RenderSkins : MonoBehaviour
     {
         _indexSkin = PlayerPrefs.GetInt("selectSkin");
         Skins _skins = _skinDB.GetSkins(_indexSkin);
-        Instantiate(_skins.skin);
-    } 
+        Instantiate(_skins.Skin, new Vector3(0f, 2f, 0f), Quaternion.Euler(0f, 0f, 0f)); 
+    }
 }
