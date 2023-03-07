@@ -20,7 +20,9 @@ public class RemoveAds : UIBase
     public static readonly string codeRemoveAd = "UNICORNSTUDIOGAME";
 
     private void Awake() 
-    {
+    {   
+        if(IngameData.Instance.IsShowAds)
+            _textStatus.text = "Ads removed";
         _popupRemoveAd.transform.localScale = new Vector3(0f, 0f, 0f);
         _background.alpha = 0f;
     }
@@ -43,7 +45,7 @@ public class RemoveAds : UIBase
             PlayerPrefs.SetInt("removeAds", 1);
             IngameData.Instance.IsShowAds = Convert.ToBoolean(PlayerPrefs.GetInt("removeAds"));
             _textStatus.text = "Remove Ads success";
-            AdmobController.Instance.ShowBanner(false);
+            GoogleAdMobController.Instance.ShowBanner(false);
             Debug.Log($"Remove ads suceess {IngameData.Instance.IsShowAds}");
         }
         else

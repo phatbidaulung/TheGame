@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +11,8 @@ public class IngameData : Singleton<IngameData>
         get => _isShowAds;
         set => _isShowAds = value;
     }
-    void Start()
-    {
+    private void Awake() {
+        _isShowAds = Convert.ToBoolean(PlayerPrefs.GetInt("removeAds"));
         DontDestroyOnLoad(this.gameObject);
     }
 }

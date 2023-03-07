@@ -733,7 +733,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: 10
   m_TargetDisplay: 0
@@ -793,7 +793,6 @@ MonoBehaviour:
   _textLoadingValue: {fileID: 8837686920057680347}
   _loading: {fileID: 1058741600}
   _loadingPopup: {fileID: 8837686921061828358}
-  _timeDelayTurnOffObject: 1.5
 --- !u!225 &1058741600
 CanvasGroup:
   m_ObjectHideFlags: 0

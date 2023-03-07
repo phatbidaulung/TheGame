@@ -20,8 +20,12 @@ MonoBehaviour:
   - SkinName: Number02
     SkinSprite: {fileID: 21300000, guid: 4ef6729c886ccb349ab8910c7641e2b1, type: 3}
     Skin: {fileID: 5977066483694199029, guid: 770684da691270f428df9c584d10c572, type: 3}
-    Buy: 0
+    Buy: 1
   - SkinName: Number03
     SkinSprite: {fileID: 21300000, guid: 87fdf4d7c7169f347ab211db77679219, type: 3}
     Skin: {fileID: 8150619665002986235, guid: c263156b31d1545429466c6629bef39f, type: 3}
-    Buy: 0
+    Buy: 1
+  - SkinName: Number04
+    SkinSprite: {fileID: 21300000, guid: f9161c6c9e06dc445ada3ee16d991f90, type: 3}
+    Skin: {fileID: 3064508770094098440, guid: f8007678fa86e994cb0360baa116b248, type: 3}
+    Buy: 1

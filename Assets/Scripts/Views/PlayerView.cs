@@ -15,13 +15,18 @@ public class PlayerView : View<PlayerController, PlayerModel>
 
     private void OnEnable()
     {
-        this.Model.startPosition = this.gameObject.transform.position;
+        this.Model.nextPosition = transform.position;
+        this.Model.nextRotation = Quaternion.Euler(0f, 0f, 0f);
     }
     private void Update()
     {
-        this.Controller.RoiXuongDayXaHoi(transform.position);
-        Move();
-        // MoveWithTouch();
+        // this.Controller.RoiXuongDayXaHoi(transform.position);
+        // Move();
+        MoveWithKey();
+
+        
+        transform.position = Vector3.MoveTowards(transform.position, new Vector3(this.Model.nextPosition.x , transform.position.y, this.Model.nextPosition.z), this.Model.speedMovement);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, this.Model.nextRotation, this.Model.speedRotation);
     }
 
     private void Move()
@@ -42,27 +47,38 @@ public class PlayerView : View<PlayerController, PlayerModel>
                 if(distance.x < -this.Model.swipeRange)
                 {
                     this.Model.stopTouch = true;
-                    this.Controller.Movement(gameObject, EMovement.MoveToLeft);
+                    this.Controller.PlayEffect(_animator);
+                    this.ActionWaitTime(this.Model.timeDelayAnimation, () => {
+                        this.Controller.Movement(EMovement.MoveToLeft);
+                    });
                 }
                 // Right
                 else if(distance.x > this.Model.swipeRange)
                 {
                     this.Model.stopTouch = true;
-                    this.Controller.Movement(gameObject, EMovement.MoveToRight);
+                    this.Controller.PlayEffect(_animator);
+                    this.ActionWaitTime(this.Model.timeDelayAnimation, () => {
+                        this.Controller.Movement(EMovement.MoveToRight);
+                    });
                 }
                 // Up
                 else if(distance.y > this.Model.swipeRange)
                 {
                     this.Model.stopTouch = true;
-                    this.Controller.Movement(gameObject, EMovement.MoveToTop);
+                    this.Controller.PlayEffect(_animator);
+                    this.ActionWaitTime(this.Model.timeDelayAnimation, () => {
+                        this.Controller.Movement(EMovement.MoveToTop);
+                    });
                 }
                 //Down
                 else if(distance.y < -this.Model.swipeRange)
                 {
                     this.Model.stopTouch = true;
-                    this.Controller.Movement(gameObject, EMovement.MoveToBottom);
+                    this.Controller.PlayEffect(_animator);
+                    this.ActionWaitTime(this.Model.timeDelayAnimation, () => {
+                        this.Controller.Movement(EMovement.MoveToBottom);
+                    });
                 }
-
             }
         }
 
@@ -74,72 +90,52 @@ public class PlayerView : View<PlayerController, PlayerModel>
             Vector2 distance = this.Model.endTouchPosition - this.Model.startTouchPosition;
             if(Mathf.Abs(distance.x) < this.Model.tapRange && Mathf.Abs(distance.y) < this.Model.tapRange)
             {
-                this.Controller.Movement(gameObject, EMovement.MoveToTop);
+                this.Controller.PlayEffect(_animator);
+                this.ActionWaitTime(this.Model.timeDelayAnimation, () => {
+                    this.Controller.Movement(EMovement.MoveToTop);
+                });
             }
         }
     } 
-    private void MoveWithTouch()
+    private void MoveWithKey()
     {
-        this.Model.SwipedRight = false;
-		this.Model.SwipedLeft = false;
-		this.Model.SwipedUp = false;
-		this.Model.SwipedDown = false;
-		if(Input.touches.Length > 0)
-		{
-			Touch t = Input.GetTouch(0);
-			if(t.phase == TouchPhase.Began)
-			{
-				this.Model.StartPos = new Vector2(t.position.x/(float)Screen.width, t.position.y/(float)Screen.width);
-				this.Model.StartTime = Time.time;
-			}
-			if(t.phase == TouchPhase.Ended)
-			{
-				if (Time.time - this.Model.StartTime > this.Model.MAX_SWIPE_TIME) // press too long
-					return;
-
-				Vector2 endPos = new Vector2(t.position.x/(float)Screen.width, t.position.y/(float)Screen.width);
-				Vector2 swipe = new Vector2(endPos.x - this.Model.StartPos.x, endPos.y - this.Model.StartPos.y);
-				if (swipe.magnitude < this.Model.MIN_SWIPE_DISTANCE) // Too short swipe
-					return;
-
-				if (Mathf.Abs (swipe.x) > Mathf.Abs (swipe.y)) { // Horizontal swipe
-					if (swipe.x > 0) {
-						this.Model.SwipedRight = true;
-                        Debug.Log("right");
-                        this.Controller.Movement(gameObject, EMovement.MoveToRight);
-					}
-					else {
-						this.Model.SwipedLeft = true;
-                        Debug.Log("left");
-                        this.Controller.Movement(gameObject, EMovement.MoveToLeft);
-					}
-				}
-				else { // Vertical swipe
-					if (swipe.y > 0) {
-						this.Model.SwipedUp = true;
-                        Debug.Log("Up");
-                        this.Controller.Movement(gameObject, EMovement.MoveToTop);
-					}
-					else {
-						this.Model.SwipedDown = true;
-                        Debug.Log("Down");
-                        this.Controller.Movement(gameObject, EMovement.MoveToBottom);
-					}
-				}
-			}
-		}
+        if(Input.GetKeyDown(KeyCode.W)){
+            this.Controller.PlayEffect(_animator);
+            this.ActionWaitTime(this.Model.timeDelayAnimation, () => {
+                this.Controller.Movement(EMovement.MoveToTop);   
+            });
+            return;
+        }
+        if(Input.GetKeyDown(KeyCode.S)){
+            this.Controller.PlayEffect(_animator);
+            this.ActionWaitTime(this.Model.timeDelayAnimation, () => {
+                this.Controller.Movement(EMovement.MoveToBottom); 
+            });
+            return;
+        }
+        if(Input.GetKeyDown(KeyCode.A)){
+            this.Controller.PlayEffect(_animator);
+            this.ActionWaitTime(this.Model.timeDelayAnimation, () => {
+                this.Controller.Movement(EMovement.MoveToLeft); 
+            });
+            return;
+        }
+        if(Input.GetKeyDown(KeyCode.D)){
+            this.Controller.PlayEffect(_animator);
+            this.ActionWaitTime(this.Model.timeDelayAnimation, () => {
+                this.Controller.Movement(EMovement.MoveToRight); 
+            });
+            return;
+        }
     }
     public void PlayerBecomeGhost()
     {
         this.Controller.PlayerBecomeGhost(_rb, _playerCollider);
     }
-    
     private void OnCollisionEnter(Collision other) {
         if(other.gameObject.tag == "Enemy")
         {
-            this.Controller.TakeDamage();
-            if(this.Model.health <= 0)
-                GameManager.Instance.GameOver();
+            GameManager.Instance.GameOver();
             SoundManager.Instance.PlaySound(EActionSound.PlayerDie);
         }
     }
