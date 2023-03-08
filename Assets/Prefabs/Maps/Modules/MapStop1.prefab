@@ -2494,7 +2494,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9040693838653314723}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 20, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -29111,9 +29111,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9040693838963997665}
     m_Modifications:
+    - target: {fileID: 1184551858798100, guid: b0bb4b9691721cf4791e1124d867edd8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1394111307883294, guid: b0bb4b9691721cf4791e1124d867edd8, type: 3}
       propertyPath: m_Name
       value: trashBag prefab (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323016640052056, guid: b0bb4b9691721cf4791e1124d867edd8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.42
       objectReference: {fileID: 0}
     - target: {fileID: 4631891537778504, guid: b0bb4b9691721cf4791e1124d867edd8, type: 3}
       propertyPath: m_RootOrder
@@ -29359,9 +29367,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9040693838963997665}
     m_Modifications:
+    - target: {fileID: 1184551858798100, guid: b0bb4b9691721cf4791e1124d867edd8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1394111307883294, guid: b0bb4b9691721cf4791e1124d867edd8, type: 3}
       propertyPath: m_Name
       value: trashBag prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323016640052056, guid: b0bb4b9691721cf4791e1124d867edd8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323016640052056, guid: b0bb4b9691721cf4791e1124d867edd8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.18
       objectReference: {fileID: 0}
     - target: {fileID: 4631891537778504, guid: b0bb4b9691721cf4791e1124d867edd8, type: 3}
       propertyPath: m_RootOrder
@@ -29421,9 +29441,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9040693838963997665}
     m_Modifications:
+    - target: {fileID: 1184551858798100, guid: b0bb4b9691721cf4791e1124d867edd8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1394111307883294, guid: b0bb4b9691721cf4791e1124d867edd8, type: 3}
       propertyPath: m_Name
       value: trashBag prefab (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323016640052056, guid: b0bb4b9691721cf4791e1124d867edd8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323016640052056, guid: b0bb4b9691721cf4791e1124d867edd8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.12
       objectReference: {fileID: 0}
     - target: {fileID: 4631891537778504, guid: b0bb4b9691721cf4791e1124d867edd8, type: 3}
       propertyPath: m_RootOrder
@@ -29669,9 +29701,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9040693838963997665}
     m_Modifications:
+    - target: {fileID: 1184551858798100, guid: b0bb4b9691721cf4791e1124d867edd8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1394111307883294, guid: b0bb4b9691721cf4791e1124d867edd8, type: 3}
       propertyPath: m_Name
       value: trashBag prefab (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323016640052056, guid: b0bb4b9691721cf4791e1124d867edd8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323016640052056, guid: b0bb4b9691721cf4791e1124d867edd8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323016640052056, guid: b0bb4b9691721cf4791e1124d867edd8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.34
       objectReference: {fileID: 0}
     - target: {fileID: 4631891537778504, guid: b0bb4b9691721cf4791e1124d867edd8, type: 3}
       propertyPath: m_RootOrder
@@ -29800,6 +29848,10 @@ PrefabInstance:
     - target: {fileID: 1394382416345726, guid: 8da2fa4410a3c384badf2e8d8d2f56f3, type: 3}
       propertyPath: m_Name
       value: MT Car 01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1497276996788712, guid: 8da2fa4410a3c384badf2e8d8d2f56f3, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4529314752072744, guid: 8da2fa4410a3c384badf2e8d8d2f56f3, type: 3}
       propertyPath: m_RootOrder
@@ -30034,6 +30086,10 @@ PrefabInstance:
     - target: {fileID: 1394382416345726, guid: 8da2fa4410a3c384badf2e8d8d2f56f3, type: 3}
       propertyPath: m_Name
       value: MT Car 01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1497276996788712, guid: 8da2fa4410a3c384badf2e8d8d2f56f3, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4529314752072744, guid: 8da2fa4410a3c384badf2e8d8d2f56f3, type: 3}
       propertyPath: m_RootOrder
