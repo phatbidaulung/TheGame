@@ -15,6 +15,7 @@ public class RenderMap : MonoBehaviour
     private float _locationNewMap;
     private void Start() 
     {
+        CheckLocationMap();
         _locationNewMap += _typeMap == ETypeMap.EndLessMap ? _lengthMap : 0f;
         CreatePoolMapModule();
         CreateMap();            
@@ -34,7 +35,6 @@ public class RenderMap : MonoBehaviour
     }
     public void CreateNewMap()
     {
-
         switch (_typeMap)
         {
             case ETypeMap.NormalMap:
@@ -51,7 +51,11 @@ public class RenderMap : MonoBehaviour
 
         _locationNewMap += _lengthMap;
     }
-
+    public void CheckLocationMap()
+    {
+        _locationNewMap = _lengthMap * (_mapsCreated.Count - 1);
+        Debug.Log(_locationNewMap);
+    }
     public void RecycleMap()
     {
         _mapsCreated[_numeberMapOfList].Recycle();

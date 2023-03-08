@@ -15,7 +15,7 @@ public class UIManager : UIBase
     [SerializeField] private GameObject _uiStore;
     [SerializeField] private GameObject _uiChooseLevels;
     
-    private void Awkae()
+    private void Awake()
     {
         Instance = this;
     }
