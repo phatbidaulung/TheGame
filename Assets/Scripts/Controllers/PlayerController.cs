@@ -16,7 +16,7 @@ public class PlayerController : Controller<PlayerController, PlayerModel>
             nextPosition        = default,
             nextRotation        = default,
             hit                 = default,
-            obstacles           = default,
+            obstacles           = LayerMask.GetMask("Obstacles"),
             speedMovement       = 0.2f,
             speedRotation       = 20f,
             timeDelayAnimation  = 0.15f,

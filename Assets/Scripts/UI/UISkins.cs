@@ -39,5 +39,6 @@ public class UISkins : MonoBehaviour
     private void SelectSkin()
     {
         PlayerPrefs.SetInt("selectSkin", Int32.Parse(_indexSkin.text));
+        UIManager.Instance.ClosePopup(EActionUI.UIChooseSkins);
     }
 }

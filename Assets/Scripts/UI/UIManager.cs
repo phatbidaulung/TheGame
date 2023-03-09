@@ -60,6 +60,31 @@ public class UIManager : UIBase
     {
         _loading.LoadScene(nameScene);
     }
+
+    public void ClosePopup(EActionUI uiOrPopup)
+    {
+        switch (uiOrPopup)
+        {
+            case EActionUI.PopupSetting:
+                base.ClosePopup(_popupSetting);
+                break;
+            case EActionUI.PopupStatusRealTime:
+                base.ClosePopup(_popupStatusRealTime);
+                break;
+            case EActionUI.UIChooseSkins:
+                base.ClosePopup(_uiChooseSkins);
+                break;
+            case EActionUI.UIChooseLevels:
+                base.ClosePopup(_uiChooseLevels);
+                break;
+            case EActionUI.UIStore:
+                base.ClosePopup(_uiStore);
+                break;
+            case EActionUI.UIRemoveAd:
+                base.ClosePopup(_popupRemoveAd);
+                break;
+        }
+    }
 }
 
 public enum EActionUI

@@ -53,7 +53,8 @@ public class RenderMap : MonoBehaviour
     }
     public void CheckLocationMap()
     {
-        _locationNewMap = _lengthMap * (_mapsCreated.Count - 1);
+        if(_mapsCreated.Count > 0)
+            _locationNewMap = _lengthMap * (_mapsCreated.Count - 1);
         Debug.Log(_locationNewMap);
     }
     public void RecycleMap()

@@ -181,9 +181,6 @@ MonoBehaviour:
   targetAnim: {fileID: 0}
   animOn: {fileID: 0}
   animOff: {fileID: 0}
-  obstacles:
-    serializedVersion: 2
-    m_Bits: 0
   _rb: {fileID: 3064508770094098434}
   _animator: {fileID: 3064508769755080322}
   _playerCollider: {fileID: 3064508770094098446}

@@ -23,6 +23,7 @@ public class UIChooseSkin : UIBase
     [Header("Scroll")]
     [SerializeField] private ScrollRect _scrollView;
     [SerializeField] private GameObject _centeredObject;
+    [SerializeField] private RectTransform _contentListSkin;
     private TMP_Text _valueSkin;
 
     [Header("UI")]
@@ -32,6 +33,7 @@ public class UIChooseSkin : UIBase
     [SerializeField] private float _timeDelayTurnOffObject = 0.5f;
     protected int _selectSkin = 0;
     Vector3 defautVtc = new Vector3(150f, 150f, 150f);
+    private float _widthContent;
 
     private void Awake() 
     {
@@ -49,6 +51,15 @@ public class UIChooseSkin : UIBase
     {
         CreateListSkin();
         ChangeAlpha(_choosseSkin, 1f, _timeDelayTurnOffObject);
+        _widthContent = _contentListSkin.sizeDelta.x;
+        this.ActionWaitTime(0.01f, () => {
+
+            _contentListSkin.transform.localPosition = new Vector3(ValueCenterObject(PlayerPrefs.GetInt("selectSkin")), _contentListSkin.transform.localPosition.y, _contentListSkin.transform.localPosition.z);
+        });
+    }
+    private void Update() {
+        // horizonta normal posision 
+        // _scrollView.horizontalNormalizedPosition = ValueCenterObject(PlayerPrefs.GetInt("selectSkin"));
     }
     private void CreateListSkin()
     {
@@ -106,4 +117,7 @@ public class UIChooseSkin : UIBase
             ClosePopup(this.gameObject);
         });
     }
+
+    private float ValueCenterObject(int indexSkin) => (_widthContent / 2) - (275 * indexSkin) - 275;
+
 }
