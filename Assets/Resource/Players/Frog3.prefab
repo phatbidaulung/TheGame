@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 850191461}
   - component: {fileID: 850191460}
   m_Layer: 5
-  m_Name: Player04
+  m_Name: Frog3
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -235,6 +235,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: 2222de37c8100a5419a120f4a22877b1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 32277082527d7c54db33a11881b09cd4, type: 2}
     - target: {fileID: 919132149155446097, guid: 2222de37c8100a5419a120f4a22877b1, type: 3}
       propertyPath: m_Name
       value: frog

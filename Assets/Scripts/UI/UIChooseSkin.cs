@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System;
 
 using TMPro;
 
@@ -32,34 +33,42 @@ public class UIChooseSkin : UIBase
     [Header("Value")]
     [SerializeField] private float _timeDelayTurnOffObject = 0.5f;
     protected int _selectSkin = 0;
-    Vector3 defautVtc = new Vector3(150f, 150f, 150f);
-    private float _widthContent;
+    private Vector3 _valueScale3DObjectDefaut = new Vector3(150f, 150f, 150f);
+    private float _maxValueCenterObject = 100f;
+    private float _speedCenterObject = 10f;
 
     private void Awake() 
     {
         _choosseSkin.alpha = 0f;
+        // Create emty list
         if(_listSkinsCreated.Count == 0)
             _listSkinsCreated.Add(_skinDB.GetSkins(0).skin);
+
         this._scrollView.onValueChanged.AddListener(delegate {GetAndSetObjectInCenterScreen(); });
     }
     private void Start() 
     {
-        _selectSkin = PlayerPrefs.GetInt("selectSkin");
         this._buttonBack.onClick.AddListener(TurnOffObject);
     }
     private void OnEnable() 
     {
         CreateListSkin();
         ChangeAlpha(_choosseSkin, 1f, _timeDelayTurnOffObject);
-        _widthContent = _contentListSkin.sizeDelta.x;
-        this.ActionWaitTime(0.01f, () => {
 
-            _contentListSkin.transform.localPosition = new Vector3(ValueCenterObject(PlayerPrefs.GetInt("selectSkin")), _contentListSkin.transform.localPosition.y, _contentListSkin.transform.localPosition.z);
+        _selectSkin = PlayerPrefs.GetInt("selectSkin");
+        foreach (Transform child in _scrollView.content.transform)
+        {
+            if(_selectSkin == Int32.Parse(child.Find("IndexSkin").gameObject.GetComponent<TMP_Text>().text))
+            {
+                _centeredObject = child.Find("3DObject").gameObject;
+            }
+        }
+        this.ActionWaitTime(0.01f, () => {
+            _scrollView.FocusOnItem((RectTransform)_centeredObject.transform);
         });
-    }
-    private void Update() {
-        // horizonta normal posision 
-        // _scrollView.horizontalNormalizedPosition = ValueCenterObject(PlayerPrefs.GetInt("selectSkin"));
+
+        // _valueScale3DObjectDefaut = _scrollView.content.Find("3DObject").gameObject.transform.localScale;
+        // Debug.Log(_valueScale3DObjectDefaut);
     }
     private void CreateListSkin()
     {
@@ -103,9 +112,23 @@ public class UIChooseSkin : UIBase
             {
                 closestDistance = distance;
                 _centeredObject = child.Find("3DObject").gameObject;
-                // _centeredObject.transform.localScale = defautVtc + scaleTo;
+
+                // Change scale object in center screen 
+                // child.Find("3DObject").gameObject.transform.localScale = _valueScale3DObjectDefaut + new Vector3(30f, 30f, 30f);
+                
+                // Center object in scroll view
+                if((Mathf.Abs(_scrollView.velocity.x) < _maxValueCenterObject) && (Input.touchCount == 0))
+                {
+                    StartCoroutine( _scrollView.FocusOnItemCoroutine( (RectTransform)_centeredObject.transform, _speedCenterObject ) );
+                }
                 _valueSkin = child.Find("IndexSkin").gameObject.GetComponent<TMP_Text>();
+                PlayerPrefs.SetInt("selectSkin", Int32.Parse(_valueSkin.text));
             }
+
+            // if(child.Find("IndexSkin").gameObject.GetComponent<TMP_Text>().text != _valueSkin.text)
+            // {
+            //     child.Find("3DObject").gameObject.transform.localScale = _valueScale3DObjectDefaut;
+            // }
         }
     }
     private void TurnOffObject()
@@ -117,7 +140,4 @@ public class UIChooseSkin : UIBase
             ClosePopup(this.gameObject);
         });
     }
-
-    private float ValueCenterObject(int indexSkin) => (_widthContent / 2) - (275 * indexSkin) - 275;
-
 }

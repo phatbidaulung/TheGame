@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: SkinDataBase
   m_EditorClassIdentifier: 
   skins:
-  - skinName: Number01
+  - skinName: Frog1
     skinSprite: {fileID: 0}
-    skin: {fileID: 8650380762155819264, guid: 454515073420f564a96c7c4f233a7ae1, type: 3}
+    skin: {fileID: 2485546950683134455, guid: d15dda40f739ee647a0177bea50113d0, type: 3}
     buy: 1
-  - skinName: Number02
+  - skinName: Frog2
     skinSprite: {fileID: 0}
-    skin: {fileID: 5977066483694199029, guid: 770684da691270f428df9c584d10c572, type: 3}
+    skin: {fileID: 2485546950683134455, guid: 061c343ea2a12e2469bf9a8a2b2153d1, type: 3}
     buy: 1
-  - skinName: Number03
+  - skinName: Frog3
     skinSprite: {fileID: 0}
-    skin: {fileID: 8150619665002986235, guid: c263156b31d1545429466c6629bef39f, type: 3}
+    skin: {fileID: 2485546950683134455, guid: ad752528697528e45bc64b0b25be5896, type: 3}
     buy: 1
   - skinName: Number04
     skinSprite: {fileID: 0}
